@@ -1,0 +1,29 @@
+main{
+    text-wrap: pretty;
+}
+
+h1{
+    font-size: 3.5rem;
+    text-align: center;
+    padding: 20px;
+}
+
+h2{
+    font-size: 2rem;
+    padding: 10px 0;
+}
+
+p{
+    font-size: 1.3rem;
+    padding: 10px 0px;
+}
+
+.li-privacy{
+    list-style: upper-roman;
+    padding: 5px 20px;
+    list-style-position: inside;
+}
+
+.div-privacy{
+    padding: 30px 0px;
+}

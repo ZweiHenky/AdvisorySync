@@ -1,0 +1,139 @@
+
+/* hero */
+
+.hero{
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    align-items: center;
+    width: 85%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+h1{
+    font-size: 80px;
+    line-height: 100px;
+}
+
+.phrase{
+    padding: 5px;
+    font-size: 20px;
+}
+
+h2{
+    font-weight: 300;
+}
+
+.btn-start{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 180px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.btn-start:hover{
+    background-color: black;
+    opacity: 0.8;
+}
+.btn-end:hover{
+    background-color: var(--btn-border-color);
+}
+
+.btn-end{
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 180px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border: 1px var(--btn-border-color) solid;
+}
+
+.btn-start span{
+    text-align: center;
+    font-size: 18px;
+}
+
+.container-btn-info{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* properties */
+
+.container-property{
+    margin-top: 150px;
+    width: 100%;
+    text-align: center;
+}
+
+.container-property h2{
+    font-size: 40px;
+    padding: 20px;
+}
+
+.properties{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin: 0 auto;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.properties > *{
+    min-width: 250px;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 8px;
+    border: 2px inset rgb(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+    height: 300px;
+    justify-content: space-evenly;
+}
+
+.imf-property{
+    width: 70px;
+    height: 70px;
+}
+
+@media (max-width: 667px) {
+    h1{
+        font-size: 3rem;
+        line-height: 50px;
+    }
+
+    .hero{
+        gap: 50px;
+    }
+    
+    .container-btn-info{
+        flex-direction: column;
+    }
+
+    .container-property h2{
+        font-size: 2rem;
+        padding: 20px;
+    }
+
+    .imf-property{
+        width: 50px;
+        height: 50px;
+    }
+}

@@ -1,0 +1,265 @@
+:root{
+    --background: #FAFAFA;
+    --primary: #001f3f;
+    --btn-border-color: #f0f0f0;
+    --text-nav: #787878;
+}
+
+@font-face {
+    font-family: 'Geist';
+    src: url('../assets/fonts/Geist-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Geist Light';
+    src: url('../assets/fonts/Geist-Light.woff2') format('woff2');
+}
+
+*{
+    box-sizing: border-box;   
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    margin: 0 auto;
+    font-family: 'Geist';
+    background-color: var(--background);
+}
+
+main{
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 0 15px;
+    width: 90%;
+}
+
+li{
+    list-style: none;
+}
+
+/* header */
+
+header{
+    padding: 5px 20px;
+    position: sticky;
+    top: 0;
+    background-color: var(--background);
+    height: 4rem;
+    width: 100%;
+    z-index: 999;
+}
+
+.header-active{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-header{
+    display: flex;
+    gap: 30px;
+}
+
+.logo-header a{
+    font-size: 16px;
+    color:var(--text-nav);
+    line-height: 1;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.menu{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.menu li{
+    padding: 10px;
+    border-radius: 20px;
+}
+.menu li:hover{
+    background-color: var(--btn-border-color);
+}
+
+.btn-header{
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+}
+
+.btn-register{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 7px 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-login{
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    padding: 7px 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border: 1px var(--btn-border-color) solid;
+    cursor: pointer;
+}
+
+.btn-register:hover{
+    background-color: black;
+    opacity: 0.8;
+}
+.btn-login:hover{
+    background-color:var(--btn-border-color);
+}
+
+
+/* footer */
+
+footer{
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.social{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+.footer-nav{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-nav li {
+    padding: 20px;
+}
+.footer-nav li a{
+    text-decoration: none;
+    color: var(--text-nav);
+}
+
+.copyright{
+    opacity: 0.5;
+}
+
+.container-menu-hamburger{
+    background-color: var(--background);
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.btn-hamburger{
+    display: none;
+    gap: 10px;
+    flex-direction: column;
+}
+
+
+.menu-hamburger{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 100%;
+}
+
+.menu-hamburger li{
+    width: 100%;
+    text-align: center;
+}
+
+.menu-hamburger li a{
+    border-radius: 8px;
+    display: block;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+}
+.menu-hamburger a:hover{
+    background-color: var(--primary);
+    color: white;
+}
+
+.menu-hamburger a{
+    text-decoration: none;
+    color: var(--text-nav);
+}
+
+.ham4 .top {
+    stroke-dasharray: 40 121;
+}
+.ham4 .bottom {
+    stroke-dasharray: 40 121;
+}
+.ham4.active .top {
+    stroke-dashoffset: -68px;
+}
+.ham4.active .bottom {
+    stroke-dashoffset: -68px;
+}
+.ham {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.hamRotate.active {
+    transform: rotate(45deg);
+}
+.hamRotate180.active {
+    transform: rotate(180deg);
+}
+.line {
+    fill:none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke:#000;
+    stroke-width:4;
+    stroke-linecap:round;
+}
+
+@media (max-width: 1000px) {
+    header{
+        height: 5.5rem;
+        width: 100%;
+    }
+
+    .menu{
+        display: none;
+    }
+
+    .btn-header{
+        display: none;
+    }
+
+    .btn-hamburger{
+        display: flex;
+    }
+}
