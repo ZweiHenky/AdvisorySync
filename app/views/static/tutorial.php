@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styles/config.css">
-    <link rel="stylesheet" href="../styles/tutorial.css">
+    <link rel="stylesheet" href="../app/styles/config.css">
+    <link rel="stylesheet" href="../app/styles/tutorial.css">
 </head>
 <body>
 <?php
-            include_once 'views/templates/header.php';
+            include_once 'app/views/templates/header.php';
         ?>
     <main>
         
@@ -139,7 +139,7 @@
         </div>
     </main>
     <?php
-        include_once 'views/templates/footer.php';
+        include_once 'app/views/templates/footer.php';
     ?>
 
 <script>

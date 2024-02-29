@@ -7,22 +7,22 @@
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- My CSS -->
-	<link rel="stylesheet" href="../styles/admin/config.css">
+	<link rel="stylesheet" href="../app/styles/admin/config.css">
 	<title>AdminHub</title>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
-    <script type='module' src="../utils/admin/lenguage.js">	</script>
+    <script type='module' src="../app/utils/admin/lenguage.js">	</script>
 </head>
 <body>
 
     <?php
-        include('views/templates/admin/sidebar.php')
+        include('app/views/templates/admin/sidebar.php')
     ?>
 
 	<!-- CONTENT -->
 	<section id="content">
 
         <?php
-            include('views/templates/admin/navbar.php')
+            include('app/views/templates/admin/navbar.php')
         ?>
 
 		<!-- MAIN -->
@@ -145,7 +145,7 @@
 	<!-- CONTENT -->
 	
 
-	<script src="../utils/admin/script.js"></script>
-	<script src="../utils/admin/counter.js"></script>
+	<script src="../app/utils/admin/script.js"></script>
+	<script src="../app/utils/admin/counter.js"></script>
 </body>
 </html>

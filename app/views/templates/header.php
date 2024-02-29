@@ -1,17 +1,17 @@
 <header id='header'>
     <nav>
         <div class="logo-header">
-            <img src="../assets/icons/logo.png" alt="">
+            <img src="../app/assets/icons/logo.png" alt="">
             <ul class="menu">
-                <li><a href="home">Inicio</a></li>
-                <li><a href="about">Sobre Nosotros</a></li>
-                <li><a href="category">Categorias</a></li>
+                <li><a href="../static/index">Inicio</a></li>
+                <li><a href="../static/about">Sobre Nosotros</a></li>
+                <li><a href="../static/category">Categorias</a></li>
             </ul>
         </div>
         
         <div class="btn-header">
-            <a class="btn-login" href="../dinamic/login"><span>Iniciar Sesión</span></a> 
-            <a class="btn-register" href="../dinamic/register"><span>Registrarse</span></a>
+            <a class="btn-login" href="../auth/login"><span>Iniciar Sesión</span></a> 
+            <a class="btn-register" href="../auth/register"><span>Registrarse</span></a>
         </div>
 
         <div class='btn-hamburger'>
@@ -33,13 +33,13 @@
 
     <div class="container-menu-hamburger">
         <ul class='menu-hamburger'>
-            <li><a href="home">Inicio</a></li>
-            <li><a href="about">Sobre Nosotros</a></li>
-            <li><a href="category">Categorias</a></li>
+            <li><a href="../static/index">Inicio</a></li>
+            <li><a href="../static/about">Sobre Nosotros</a></li>
+            <li><a href="../static/category">Categorias</a></li>
         </ul>
         <div class="btn-hamburger">
-                <a class="btn-login" href="../dinamic/login"><span>Iniciar Sesion</span></a> 
-                <a class="btn-register" href="../dinamic/register"><span>Registrarse</span></a>
+                <a class="btn-login" href="../auth/login"><span>Iniciar Sesion</span></a> 
+                <a class="btn-register" href="../auth/register"><span>Registrarse</span></a>
         </div>
     </div>
 

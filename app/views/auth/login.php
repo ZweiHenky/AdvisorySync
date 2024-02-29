@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Form</title>
-  <link rel="stylesheet" href="../styles/login.css">
+  <link rel="stylesheet" href="../app/styles/login.css">
 </head>
 <body>
     <div class="login-container">
         <div>
-            <img src="../assets/icons/logo.png"  alt="" srcset="">
+            <img src="../app/assets/icons/logo.png"  alt="" srcset="">
         </div>
-        <form class="login-form">
+        <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method='POST'>
             
             <h2>Inicia Sesion</h2>
 

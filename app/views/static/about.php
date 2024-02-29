@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styles/config.css">
-    <link rel="stylesheet" href="../styles/about.css">
+    <link rel="stylesheet" href="../app/styles/config.css">
+    <link rel="stylesheet" href="../app/styles/about.css">
 </head>
 <body>
 
     <?php
-        include_once 'views/templates/header.php';
+        include_once 'app/views/templates/header.php';
     ?>
 
     <main>
@@ -20,7 +20,7 @@
                 estamos comprometidos a proporcionar una experiencia educativa innovadora y personalizada, 
                 donde cada estudiante tenga la oportunidad de alcanzar su máximo potencial.
             </h1>
-            <img class="hero-img" src="../assets/img/about.png" alt="">
+            <img class="hero-img" src="../app/assets/img/about.png" alt="">
         </section>
 
         <article class="container-MV">
@@ -41,7 +41,7 @@
     </main>
 
     <?php
-        include_once 'views/templates/footer.php';
+        include_once 'app/views/templates/footer.php';
     ?>
 </body>
 </html>

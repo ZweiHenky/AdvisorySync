@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styles/config.css">
-    <link rel="stylesheet" href="../styles/category.css">
+    <link rel="stylesheet" href="../app/styles/config.css">
+    <link rel="stylesheet" href="../app/styles/category.css">
 </head>
 <body>
 
     <?php
-        include_once 'views/templates/header.php';
+        include_once 'app/views/templates/header.php';
     ?>
 
 <main>
@@ -20,7 +20,7 @@
             <div class="card-container">
                 <div class="card">
                     <div class="card-front">
-                        <img class="img-category" src="../assets/img/mate.jpg" alt="" >
+                        <img class="img-category" src="../app/assets/img/mate.jpg" alt="" >
                         <div class="container-description">
                             <div class="description-category">
                                 <h2 class="category">Matemáticas</h2>
@@ -35,39 +35,39 @@
                                 <h3>Temas</h3>
                                 <ul class='lista-materias'>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Algebra Lineal</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Funciones Matematicas</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Cálculo diferencial</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Probabilidad y Estadistica</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Funciones escalares de varias variables</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Planos y Superficies</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Límites y continuidad en funciones de tres variables</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Conceptos de ecuaciones diferenciales.</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Métodos analíticos de solución a ecuaciones diferenciales de primer orden.</p>   
                                     </li>
                                 </ul>
@@ -81,7 +81,7 @@
             <div class="card-container">
                 <div class="card">
                     <div class="card-front">
-                        <img class="img-category" src="../assets/img/redes.jpg" alt="" >
+                        <img class="img-category" src="../app/assets/img/redes.jpg" alt="" >
                         <div class="container-description">
                             <div class="description-category">
                                 <h2 class="category">Redes</h2>
@@ -98,11 +98,11 @@
                                 <h3>Temas</h3>
                                 <ul class='lista-materias'>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Fundamentos de Redes</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Interconexión de Redes</p>
                                     </li>
                                 </ul>
@@ -116,7 +116,7 @@
             <div class="card-container">
                 <div class="card">
                     <div class="card-front">
-                        <img class="img-category" src="../assets/img/ti.jpg" alt="" >
+                        <img class="img-category" src="../app/assets/img/ti.jpg" alt="" >
                         <div class="container-description">
                             <div class="description-category">
                                 <h2 class="category">Tecnologías de la información (TI)</h2>
@@ -133,7 +133,7 @@
                                 <h3>Temas</h3>
                                 <ul class='lista-materias'>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Fundamentos de TI</p>
                                     </li>
                                 </ul>
@@ -147,7 +147,7 @@
             <div class="card-container">
                 <div class="card">
                     <div class="card-front">
-                        <img class="img-category" src="../assets/img/base.jpg" alt="" >
+                        <img class="img-category" src="../app/assets/img/base.jpg" alt="" >
                         <div class="container-description">
                             <div class="description-category">
                                 <h2 class="category">Base de Datos</h2>
@@ -164,15 +164,15 @@
                                 <h3>Temas</h3>
                                 <ul class='lista-materias'>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Base de Datos para Aplicaciones</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Base de Datos para Computo en la Nube</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Administración de Bases de Datos</p>
                                     </li>
                                 </ul>
@@ -187,7 +187,7 @@
             <div class="card-container">
                 <div class="card">
                     <div class="card-front">
-                        <img class="img-category" src="../assets/img/web.png" alt="" >
+                        <img class="img-category" src="../app/assets/img/web.png" alt="" >
                         <div class="container-description">
                             <div class="description-category">
                                 <h2 class="category">Aplicaciones Web</h2>
@@ -203,15 +203,15 @@
                                 <h3>Temas</h3>
                                 <ul class='lista-materias'>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Aplicaciones Web orientadaa servicios</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Aplicaciones Web para IOT 4.0</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Aplicaciones Web Progresivas</p>
                                     </li>
                                 </ul>
@@ -226,7 +226,7 @@
             <div class="card-container">
                 <div class="card">
                     <div class="card-front">
-                        <img class="img-category" src="../assets/img/programacion.jpeg" alt="" >
+                        <img class="img-category" src="../app/assets/img/programacion.jpeg" alt="" >
                         <div class="container-description">
                             <div class="description-category">
                                 <h2 class="category">Desarrollo Web</h2>
@@ -242,11 +242,11 @@
                                 <h3>Temas</h3>
                                 <ul class='lista-materias'>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Desarrollo Web Profesional</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Desarrollo Web Integral</p>
                                     </li>
                                 </ul>
@@ -261,7 +261,7 @@
             <div class="card-container">
                 <div class="card">
                     <div class="card-front">
-                        <img class="img-category" src="../assets/img/iot.jpg" alt="" >
+                        <img class="img-category" src="../app/assets/img/iot.jpg" alt="" >
                         <div class="container-description">
                             <div class="description-category">
                                 <h2 class="category">IoT</h2>
@@ -278,15 +278,15 @@
                                 <h3>Temas</h3>
                                 <ul class='lista-materias'>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Principios para loT</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Aplicaciones de loT</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Aplicaciones web para IOT 4.0</p>
                                     </li>
                                 </ul>
@@ -301,7 +301,7 @@
             <div class="card-container">
                 <div class="card">
                     <div class="card-front">
-                        <img class="img-category" src="../assets/img/security.jpg" alt="" >
+                        <img class="img-category" src="../app/assets/img/security.jpg" alt="" >
                         <div class="container-description">
                             <div class="description-category">
                                 <h2 class="category">Seguridad informática</h2>
@@ -317,27 +317,27 @@
                                 <h3>Temas</h3>
                                 <ul class='lista-materias'>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Aspectos éticos y legales del manejo de la información.</p>
                                     </li>  
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Estándares del manejo de la información.</p>
                                     </li>  
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Conceptos de seguridad.</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Conceptos de criptografía.</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Buenas prácticas en el desarrollo de software seguro.</p>
                                     </li>  
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Protección de vulnerabilidades.</p>
                                     </li>    
                                 </ul>
@@ -352,7 +352,7 @@
             <div class="card-container">
                 <div class="card">
                     <div class="card-front">
-                        <img class="img-category" src="../assets/img/integradora.jpg" alt="" >
+                        <img class="img-category" src="../app/assets/img/integradora.jpg" alt="" >
                         <div class="container-description">
                             <div class="description-category">
                                 <h2 class="category">Integradora</h2>
@@ -369,23 +369,23 @@
                                 <h3>Temas</h3>
                                 <ul class='lista-materias'>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Definición del proyecto </p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Planificación del proyecto</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Conceptos clave para la creación de soluciones tecnológicas.</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Definición de soluciones a partir de la innovación incremental.</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Diseño de Interacciones</p>   
                                     </li>
                                 </ul>
@@ -400,7 +400,7 @@
             <div class="card-container">
                 <div class="card">
                     <div class="card-front">
-                        <img class="img-category" src="../assets/img/ingles.jpg" alt="" >
+                        <img class="img-category" src="../app/assets/img/ingles.jpg" alt="" >
                         <div class="container-description">
                             <div class="description-category">
                                 <h2 class="category">Inglés</h2>
@@ -419,38 +419,38 @@
                                 <h3>Temas</h3>
                                 <ul class='lista-materias'>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Información Personal</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Actividades en Progreso</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Presente Simple vs Presente Continuo</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Describiendo situaciones en pasado</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Acciones simultáneas en el pasado</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Comparativos de igualdad y superioridad</p>                                    </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Superlativos</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Zero and 1st. Conditional</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>2nd. Conditional</p>   
                                     </li>
                                 </ul>
@@ -465,7 +465,7 @@
             <div class="card-container">
                 <div class="card">
                     <div class="card-front">
-                        <img class="img-category" src="../assets/img/expresion.jpg" alt="" >
+                        <img class="img-category" src="../app/assets/img/expresion.jpg" alt="" >
                         <div class="container-description">
                             <div class="description-category">
                                 <h2 class="category">Expresión Oral y Escrita</h2>
@@ -482,19 +482,19 @@
                                 <h3>Temas</h3>
                                 <ul class='lista-materias'>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Componentes y Usos Gramaticales</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Estructura del Texto</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Fundamentos del Proceso Comunicativo</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Tipos de Comunicación Humana</p>   
                                     </li>
                                 </ul>
@@ -509,7 +509,7 @@
             <div class="card-container">
                 <div class="card">
                     <div class="card-front">
-                        <img class="img-category" src="../assets/img/sociocultural.jpg" alt="" >
+                        <img class="img-category" src="../app/assets/img/sociocultural.jpg" alt="" >
                         <div class="container-description">
                             <div class="description-category">
                                 <h2 class="category">Formación Sociocultural</h2>
@@ -526,39 +526,39 @@
                                 <h3>Temas</h3>
                                 <ul class='lista-materias'>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Globalización:Económica, Cultural, Identidad</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Ejes de Sustentabilidad</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Tipos de Grupos</p>
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Formas de Asociación al Grupo</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Liderazgo</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Tipos de Liderazgo</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Inteligencia</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Pensamiento Vertical y Lateral</p>   
                                     </li>
                                     <li>
-                                        <img src="../assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
+                                        <img src="../app/assets/icons/check.svg" alt="" srcset="" witdh='20' height='20' >
                                         <p>Proceso de pensamiento creativo</p>   
                                     </li>
                                 </ul>
@@ -598,7 +598,7 @@
         </script>
         
         <?php
-        include_once 'views/templates/footer.php';
+        include_once 'app/views/templates/footer.php';
         ?>
 </body>
 </html>

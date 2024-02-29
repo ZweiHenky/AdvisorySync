@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styles/config.css">
-    <link rel="stylesheet" href="../styles/privacy.css">
+    <link rel="stylesheet" href="../app/styles/config.css">
+    <link rel="stylesheet" href="../app/styles/privacy.css">
 </head>
 <body>
 
     <?php
-        include_once 'views/templates/header.php';
+        include_once 'app/views/templates/header.php';
     ?>
 
     <main>
@@ -80,7 +80,7 @@
     </main>
 
     <?php
-        include_once 'views/templates/footer.php';
+        include_once 'app/views/templates/footer.php';
     ?>
 </body>
 </html>
