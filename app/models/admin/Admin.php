@@ -8,12 +8,60 @@ class Admin{
         $this->conn = $conn;
     }
 
-    public static function allUsers(){
-        $sql = 'select * from users';
+    public function countAdvisory(){
+        $sql = 'select count(id_publi) from publicaciones';
         $consult = $this->conn->prepare($sql);
         $consult->execute();
-        $result = $consult->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
+        return $consult->fetchColumn();
+    }
+
+    public function countUser(){
+        $sql = 'select count(id_usuario) from usuarios';
+        $consult = $this->conn->prepare($sql);
+        $consult->execute();
+        return $consult->fetchColumn();
+    }
+
+    public function revenue(){
+        $sql = 'select count(id_noti)*50 from notificaciones where estatus = "pagado"';
+        $consult = $this->conn->prepare($sql);
+        $consult->execute();
+        return $consult->fetchColumn();
+    }
+
+    public function lastAdvisory(){
+        $sql = 'select u.nombre,n.fecha, n.estatus from notificaciones n INNER JOIN usuarios u on n.id_usuario = u.id_usuario order by fecha DESC limit 5;';
+        $consult = $this->conn->prepare($sql);
+        $consult->execute();
+        return $consult->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function topUser(){
+        $sql ='SELECT u.nombre, ROUND(AVG(r.valoracion), 1) AS valoracion FROM resenas r INNER JOIN usuarios u ON r.id_usuario = u.id_usuario GROUP BY u.nombre ORDER BY valoracion DESC LIMIT 5';
+        $consult = $this->conn->prepare($sql);
+        $consult->execute();
+        return $consult->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function countAdviser(){
+        $sql ='select count(id_usuario) from usuarios where id_stripe != "null"';
+        $consult = $this->conn->prepare($sql);
+        $consult->execute();
+        return $consult->fetchColumn();
+    }
+
+    public function countStudent(){
+        $sql ='select count(id_usuario) from usuarios where id_stripe = "null"';
+        $consult = $this->conn->prepare($sql);
+        $consult->execute();
+        return $consult->fetchColumn();
+    }
+
+    public function allUsers(){
+        $sql ='SELECT u.id_usuario, u.nombre, u.correo , u.ult_sesion, r.valoracion, u.id_stripe FROM usuarios u LEFT JOIN resenas r ON u.id_usuario = r.id_resena';
+        $consult = $this->conn->prepare($sql);
+        $consult->execute();
+        return $consult->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

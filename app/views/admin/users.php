@@ -38,14 +38,14 @@
 				<li>
 					<i class='bx bxs-group' ></i>
 					<span class="text">
-						<h3 class='counter'>2834</h3>
+						<h3 class='counter'> <?php echo $countAdviser;  ?> </h3>
 						<p data-users>Cantidad de Asesores</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-dollar-circle' ></i>
 					<span class="text">
-						<h3 class='counter'>$2543</h3>
+						<h3 class='counter'><?php echo $countAdviser;  ?></h3>
 						<p data-revenue>Cantidad de alumnos</p>
 					</span>
 				</li>
@@ -60,6 +60,7 @@
 						<thead>
 							<tr>
 								<th data-user >Name</th>
+								<th data-user >Email</th>
 								<th data-date >Last login</th>
 								<th data-status>Rating</th>
 								<th>Tipo</th>
@@ -67,59 +68,45 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td>5</td>
-								<td>
-									<p>Alumno</p>
-								</td>
-								<td>
-									<button class='btn-delete'>Delete</button>
-								</td>
+							<?php
+
+								foreach($users as $user){
+									echo "<tr>";
+									echo "<td>
+											<p>{$user['nombre']}</p>
+										</td>";
+									echo "<td>{$user['correo']}</td>";
+									echo "<td>{$user['ult_sesion']}</td>";
+									if ($user['valoracion'] == null) {
+										echo "<td>
+											<p>No tiene</p>
+										</td>";
+									}else{
+										echo "<td>
+											<p>{$user['valoracion']}</p>
+										</td>";
+									}
+									if ($user['id_stripe'] == 'null') {
+										echo "<td>
+											<p>Alumno</p>
+										</td>";
+									}else{
+										echo "<td>
+											<p>Asesesor</p>
+										</td>";
+									}
+									echo "<td>
+										<form action='/advisorysync/admin/users' method='post'>
+											<input type='hidden' name='id_usuario'  value={$user['id_usuario']}>
+											<button class='btn-delete' type='submit' >Delete</button>
+										</form>
+										</td>";
+									echo "</tr>";
+								}
+
 								
-							</tr>
-							<tr>
-								<td>
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td>5</td>
-								<td>
-									<p>Alumno</p>
-								</td>
-								<td>
-									<button class='btn-delete'>Delete</button>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td>5</td>
-								<td>
-									<p>Alumno</p>
-								</td>
-								<td>
-									<button class='btn-delete'>Delete</button>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td>5</td>
-								<td>
-									<p>Alumno</p>
-								</td>
-								<td>
-									<button class='btn-delete'>Delete</button>
-								</td>
-							</tr>
+
+							?>
 						</tbody>
 					</table>
 				</div>

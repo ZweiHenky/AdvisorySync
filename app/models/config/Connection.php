@@ -1,6 +1,7 @@
 <?php
 
 class Connection{
+    
     private static $host = 'localhost'; // Normalmente 'localhost' si estás trabajando de manera local
     private static $db = 'advisorysync';
     private static $user = 'root';

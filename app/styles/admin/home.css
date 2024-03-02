@@ -1,0 +1,5 @@
+.todo ul li {
+    display: flex;
+    padding: 5px;
+    gap: 5px;
+}

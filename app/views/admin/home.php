@@ -8,6 +8,7 @@
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- My CSS -->
 	<link rel="stylesheet" href="../app/styles/admin/config.css">
+	<link rel="stylesheet" href="../app/styles/admin/home.css">
 	<title>AdminHub</title>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
     <script type='module' src="../app/utils/admin/lenguage.js">	</script>
@@ -37,21 +38,21 @@
 				<li>
 					<i class='bx bxs-calendar-check' ></i>
 					<span class="text">
-						<h3 class='counter'>1020</h3>
+						<h3 class='counter'><?php echo $countAdvisory; ?></h3>
 						<p data-allAdvisory>Total de asesorias</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-group' ></i>
 					<span class="text">
-						<h3 class='counter'>2834</h3>
+						<h3 class='counter'><?php echo $countUser; ?></h3>
 						<p data-users>Usuarios registrados</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-dollar-circle' ></i>
 					<span class="text">
-						<h3 class='counter'>$2543</h3>
+						<h3 class='counter'><?php echo '$'.$revenue; ?></h3>
 						<p data-revenue>Ingresos</p>
 					</span>
 				</li>
@@ -72,70 +73,40 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status process">Process</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
+							<?php
+								foreach ($lastAdvisory as $advisory) {
+									echo '<tr>';
+									echo "<td>{$advisory['nombre']}</td>";
+									echo "<td>{$advisory['fecha']}</td>";
+									echo "<td>{$advisory['estatus']}</td>";
+									echo '</tr>';
+								}
+							?>
 						</tbody>
 					</table>
 				</div>
-				<div class="todo">
+				<div class="order">
 					<div class="head">
 						<h3 data-top >Mejores Calificados</h3>
 					</div>
-					<ul >
-						<li >
-							<p>User 1</p>
-						</li>
-						<li >
-							<p>User 2</p>
-						</li>
-						<li >
-							<p>User 3</p>
-						</li>
-						<li >
-							<p>User 4</p>
-						</li>
-						<li >
-							<p>User 5</p>
-						</li>
-					</ul>
+					<table>
+						<thead>
+							<tr>
+								<th data-user >User</th>
+								<th data-date >Ranking</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+								foreach ($topUser as $user) {
+									echo '<tr>';
+									echo "<td>{$user['nombre']}</td>";
+									echo "<td>{$user['valoracion']}</td>";
+									echo '</tr>';
+								}
+							?>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</main>
