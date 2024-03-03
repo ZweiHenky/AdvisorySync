@@ -58,10 +58,10 @@ class Admin{
     }
 
     public function allUsers(){
-        $sql ='SELECT u.id_usuario, u.nombre, u.correo , u.ult_sesion, r.valoracion, u.id_stripe FROM usuarios u LEFT JOIN resenas r ON u.id_usuario = r.id_resena';
+        $sql ='SELECT count(*) from usuarios';
         $consult = $this->conn->prepare($sql);
         $consult->execute();
-        return $consult->fetchAll(PDO::FETCH_ASSOC);
+        return $consult->fetchColumn();
     }
 
 }

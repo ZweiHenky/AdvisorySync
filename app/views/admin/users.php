@@ -12,6 +12,7 @@
 	<title>AdminHub</title>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
     <script type='module' src="../app/utils/admin/lenguage.js">	</script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -98,7 +99,7 @@
 									echo "<td>
 										<form action='/advisorysync/admin/users' method='post'>
 											<input type='hidden' name='id_usuario'  value={$user['id_usuario']}>
-											<button class='btn-delete' type='submit' >Delete</button>
+											<button class='btn-delete' type='submit' name='delete' >Delete</button>
 										</form>
 										</td>";
 									echo "</tr>";
@@ -119,6 +120,7 @@
 	
 
 	<script src="../app/utils/admin/script.js"></script>
+	<script src="../app/utils/admin/navbarChangeBtn.js"></script>
 	<script src="../app/utils/admin/counter.js"></script>
 </body>
 </html>

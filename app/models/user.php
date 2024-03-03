@@ -13,10 +13,10 @@ class User {
         return $st->execute([$username, $email]);
     }
 
-    public function getUser($id) {
-        $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = ?");
-        $st->execute([$id]);
-        return $st->fetch(PDO::FETCH_ASSOC);
+    public function getUser($data) {
+        $st = $this->conn->prepare("SELECT * FROM usuarios u left join resenas r on u.id_usuario = r.id_usuario WHERE nombre = ? or correo = ?");
+        $st->execute([$data, $data]);
+        return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function updateUser($id, $username, $email) {
@@ -25,12 +25,12 @@ class User {
     }
 
     public function deleteUser($id) {
-        $st = $this->conn->prepare("DELETE FROM users WHERE id = ?");
+        $st = $this->conn->prepare("DELETE FROM usuarios WHERE id_usuario = ?");
         return $st->execute([$id]);
     }
 
-    public function getAllUsers() {
-        $st = $this->conn->query("SELECT * FROM usuarios");
+    public function getAllUsers($empezar_desde, $resultados_por_pagina) {
+        $st = $this->conn->query("SELECT * FROM usuarios u left join resenas r on u.id_usuario = r.id_usuario LIMIT $empezar_desde, $resultados_por_pagina");
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 }
