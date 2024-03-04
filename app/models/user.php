@@ -30,7 +30,7 @@ class User {
     }
 
     public function getAllUsers($empezar_desde, $resultados_por_pagina) {
-        $st = $this->conn->query("SELECT * FROM usuarios u left join resenas r on u.id_usuario = r.id_usuario LIMIT $empezar_desde, $resultados_por_pagina");
+        $st = $this->conn->query("SELECT *, u.id_usuario FROM usuarios u left join resenas r on u.id_usuario = r.id_usuario LIMIT $empezar_desde, $resultados_por_pagina");
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 }

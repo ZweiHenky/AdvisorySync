@@ -50,8 +50,8 @@
 						<thead>
 							<tr>
 								<th data-user >Nombre</th>
-								<th data-date >Descripcción</th>
-								<th data-status>Imaguen</th>
+								<th data-date >Descripción</th>
+								<th data-status>Imagen</th>
 								<th>Subcategorias</th>
 							</tr>
 						</thead>

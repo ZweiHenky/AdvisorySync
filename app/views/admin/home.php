@@ -93,7 +93,7 @@
 						<thead>
 							<tr>
 								<th data-user >Usuario</th>
-								<th data-date >Ranking</th>
+								<th data-date >Calificaciones</th>
 							</tr>
 						</thead>
 						<tbody>

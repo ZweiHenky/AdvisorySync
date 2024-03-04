@@ -14,9 +14,15 @@ class Advisory {
         return $st->execute([$username, $email]);
     }
 
-    public function getUser($data) {
-        $st = $this->conn->prepare("SELECT * FROM usuarios u left join resenas r on u.id_usuario = r.id_usuario WHERE nombre = ? or correo = ?");
-        $st->execute([$data, $data]);
+    public function getAdvisory($data) {
+        $st = $this->conn->prepare("SELECT p.*, u.nombre, c.nombre as categoria
+        FROM publicaciones p
+        INNER JOIN usuarios u ON u.id_usuario = p.id_usuario 
+        INNER JOIN categorias c ON p.id_categoria = c.id_categoria 
+        WHERE u.nombre = ?
+        or titulo = ?
+        or c.nombre = ?");
+        $st->execute([$data, $data, $data]);
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -25,8 +31,8 @@ class Advisory {
         return $st->execute([$username, $email, $id]);
     }
 
-    public function deleteUser($id) {
-        $st = $this->conn->prepare("DELETE FROM usuarios WHERE id_usuario = ?");
+    public function deleteAdvisory($id) {
+        $st = $this->conn->prepare("DELETE FROM publicaciones WHERE id_publi = ?");
         return $st->execute([$id]);
     }
 

@@ -66,15 +66,13 @@
 
                 $id = $_POST['id_usuario'];
 
-                var_dump($id);
-
                 $_SESSION['message'] = $this->user->deleteUser($id);
 
             }
 
             if (isset($_POST['btnSearch'])) {
                 if ($_POST['search'] == '') {
-                    $users = $this->user->getAllUsers();
+                    $users = $this->user->getAllUsers($empezar_desde, $resultados_por_pagina);
                 }else{
                     $users = $this->user->getUser($_POST['search']);
                 }
@@ -122,6 +120,8 @@
         public function advisories() {
             // Lógica para la página de inicio estática
 
+            $moreUsedCategory = $this->admin->moreUsedCategory();
+
             $page = isset($_GET['pagina']) ? $_GET['pagina'] : null;
             
             $total_resultados = $this->admin->allAdvisory();
@@ -135,9 +135,53 @@
 
             $advisories = $this->advisory->getAllAdvisories($empezar_desde, $resultados_por_pagina);
 
-            var_dump($advisories);
+            if (isset($_POST['btnSearch'])) {
+                if ($_POST['search'] == '') {
+                    $advisories = $this->advisory->getAllAdvisories($empezar_desde, $resultados_por_pagina);
+                }else{
+                    $advisories = $this->advisory->getAdvisory($_POST['search']);
+                }
+            }
+
+            if (isset($_POST['delete'])) {
+
+                $id = $_POST['id_publi'];
+
+                $_SESSION['message'] = $this->advisory->deleteAdvisory($id);
+
+            }
 
             include 'app/views/admin/advisories.php';
+
+            if (isset($_SESSION['message'])) {
+                if ($_SESSION['message'] == true) {
+                    echo "
+                        <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Eliminacion',
+                            text: 'Se elimino con exito la publicacion',
+                        }).then(function() {
+                            window.location.href = 'http://localhost/advisorySync/admin/advisories';
+                        });
+                        </script> 
+                        ";
+                }else{
+                    echo "
+                    <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Eliminacion',
+                        text: 'No se pudo eliminar',
+                    }).then(function() {
+                        window.location.href = 'http://localhost/advisorySync/admin/advisories';
+                    });
+                    </script> 
+                    ";
+                }
+                
+                unset($_SESSION['message']);
+            }
         }
 
         // Otros métodos para páginas estáticas según sea necesario

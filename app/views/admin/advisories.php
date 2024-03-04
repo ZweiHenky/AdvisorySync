@@ -11,6 +11,7 @@
 	<title>AdminHub</title>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
     <script type='module' src="../app/utils/admin/lenguage.js">	</script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -37,7 +38,7 @@
 				<li>
 					<i class='bx bxs-calendar-check' ></i>
 					<span class="text">
-						<h3 class='counter'>1020</h3>
+						<h3 class='counter'> <?php echo $moreUsedCategory; ?> </h3>
 						<p data-allAdvisory>Categoria mas usada</p>
 					</span>
 				</li>
@@ -46,16 +47,17 @@
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3 data-recent>Advisoris</h3>
+						<h3 data-recent>Asesorias</h3>
 					</div>
 					<table>
 						<thead>
 							<tr>
 								<th data-user >Id</th>
-								<th data-date >Title</th>
-								<th data-status>Date</th>
-								<th data-status>Category</th>
-								<th data-status>User</th>
+								<th data-date >Titulo</th>
+								<th data-status>Fecha</th>
+								<th data-status>Categoria</th>
+								<th data-status>Usuario</th>
+								<th data-status>Opciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -78,11 +80,20 @@
 								echo "<td>
 										<p>{$advisory['nombre']}</p>
 									  </td>";
+								echo "<td>
+									<form action='/advisorysync/admin/advisories' method='post'>
+										<input type='hidden' name='id_publi' value={$advisory['id_publi']}>
+										<button class='btn-delete' type='submit' name='delete'>Delete</button>
+									</form>
+									  </td>";
 								echo '</tr>';
 							}
 						?>
 						</tbody>
 					</table>
+					<?php
+						include('app/views/templates/admin/pagination.php');
+					?>
 				</div>
 			</div>
 		</main>

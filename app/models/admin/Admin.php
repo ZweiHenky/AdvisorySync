@@ -71,6 +71,13 @@ class Admin{
         return $consult->fetchColumn();
     }
 
+    public function moreUsedCategory(){
+        $sql ='select c.nombre from publicaciones p INNER JOIN categorias c ON p.id_categoria = c.id_categoria GROUP by c.nombre ORDER BY count(c.nombre) DESC limit 1';
+        $consult = $this->conn->prepare($sql);
+        $consult->execute();
+        return $consult->fetchColumn();
+    }
+
 }
 
 ?>
