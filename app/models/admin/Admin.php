@@ -64,6 +64,13 @@ class Admin{
         return $consult->fetchColumn();
     }
 
+    public function allAdvisory(){
+        $sql ='SELECT count(*) from publicaciones';
+        $consult = $this->conn->prepare($sql);
+        $consult->execute();
+        return $consult->fetchColumn();
+    }
+
 }
 
 ?>

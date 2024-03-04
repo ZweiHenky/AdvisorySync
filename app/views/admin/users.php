@@ -13,6 +13,23 @@
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
     <script type='module' src="../app/utils/admin/lenguage.js">	</script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<style>
+        .pagination {
+            margin-top: 20px;
+        }
+        .pagination a {
+            padding: 8px 12px;
+            margin: 0 4px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #333;
+            border-radius: 4px;
+        }
+        .pagination a.active {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
@@ -97,19 +114,38 @@
 										</td>";
 									}
 									echo "<td>
-										<form action='/advisorysync/admin/users' method='post'>
-											<input type='hidden' name='id_usuario'  value={$user['id_usuario']}>
-											<button class='btn-delete' type='submit' name='delete' >Delete</button>
-										</form>
+											<form action='/advisorysync/admin/users' method='post'>
+												<input type='hidden' name='id_usuario' id='id_usuario' value={$user['id_usuario']}>
+												<button class='btn-delete' type='submit' name='delete'>Delete</button>
+											</form>
 										</td>";
 									echo "</tr>";
 								}
 
-								
-
 							?>
 						</tbody>
 					</table>
+					<div class="pagination">
+						<?php
+						$links_to_show = 5; // Cantidad de enlaces de paginación a mostrar alrededor de la página actual
+						$start = max(1, $pagina_actual - floor($links_to_show / 2));
+						$end = min($total_paginas, $start + $links_to_show - 1);
+						
+						// Agregar enlaces para navegar hacia adelante y hacia atrás
+						if ($pagina_actual > 1) {
+							echo "<a href='?pagina=".($pagina_actual - 1)."'>Anterior</a> ";
+						}
+
+						for ($i = $start; $i <= $end; $i++) {
+							echo "<a href='?pagina=".$i."' ".($i==$pagina_actual ? "class='active'" : "").">".$i."</a> ";
+						}
+						
+						
+						if ($pagina_actual < $total_paginas) {
+							echo "<a href='?pagina=".($pagina_actual + 1)."'>Siguiente</a> ";
+						}
+						?>
+					</div>
 				</div>
 			</div>
 		</main>

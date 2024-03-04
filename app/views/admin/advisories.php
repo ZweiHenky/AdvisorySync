@@ -55,23 +55,32 @@
 								<th data-date >Title</th>
 								<th data-status>Date</th>
 								<th data-status>Category</th>
+								<th data-status>User</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									<p>1</p>
-								</td>
-								<td>
-									<p>Derivadas</p>
-								</td>
-								<td>
-									10-2-2000
-								</td>
-								<td>
-									<p>Matematicas</p>
-								</td>
-							</tr>
+
+						<?php
+							foreach($advisories as $advisory){
+								echo '<tr>';
+								echo "<td>
+										<p>{$advisory['id_publi']}</p>
+									  </td>";
+								echo "<td>
+										<p>{$advisory['titulo']}</p>
+									  </td>";
+								echo "<td>
+										<p>{$advisory['fecha']}</p>
+									  </td>";
+								echo "<td>
+										<p>{$advisory['categoria']}</p>
+									  </td>";
+								echo "<td>
+										<p>{$advisory['nombre']}</p>
+									  </td>";
+								echo '</tr>';
+							}
+						?>
 						</tbody>
 					</table>
 				</div>

@@ -2,15 +2,35 @@
 
     require 'app/models/admin/Admin.php';
     require 'app/models/User.php';
+    require 'app/models/Advisory.php';
 
     class AdminController{
         
         private $admin;
         private $user;
+        private $advisory;
 
         public function __construct() {
             $this->admin = new Admin(Connection::conn());
             $this->user = new User(Connection::conn());
+            $this->advisory = new Advisory(Connection::conn());
+        }
+        
+        public function pagination($page, $total_resultados) {
+            // Configuración de la paginación
+            $resultados_por_pagina = 5; // Número de resultados por página
+
+            if (isset($page)) {
+                $pagina_actual = $page;
+            } else {
+                $pagina_actual = 1;
+            }
+            $empezar_desde = ($pagina_actual - 1) * $resultados_por_pagina;
+
+            // Calcular el número total de páginas
+            $total_paginas = ceil($total_resultados / $resultados_por_pagina);  
+
+            return array($resultados_por_pagina, $empezar_desde, $total_paginas, $pagina_actual);
         }
 
         public function home() {
@@ -24,37 +44,29 @@
 
             include 'app/views/admin/home.php';
         }
+
         public function users() {
-            // Lógica para la página de inicio estática
 
             $countAdviser = $this->admin->countAdviser();
             $countStudent = $this->admin->countStudent();
 
-            // Configuración de la paginación
-            $resultados_por_pagina = 10; // Número de resultados por página
-
-            if (isset($_GET['pagina'])) {
-                $pagina_actual = $_GET['pagina'];
-            } else {
-                $pagina_actual = 1;
-            }
-            $empezar_desde = ($pagina_actual - 1) * $resultados_por_pagina;
-
-            // Consulta para obtener el total de resultados
+            $page = isset($_GET['pagina']) ? $_GET['pagina'] : null;
             $total_resultados = $this->admin->allUsers();
 
-            // Calcular el número total de páginas
-            $total_paginas = ceil($total_resultados / $resultados_por_pagina);  
+            $pagination = $this->pagination($page, $total_resultados);
 
-
+            $resultados_por_pagina = $pagination[0];
+            $empezar_desde = $pagination[1];
+            $total_paginas = $pagination[2];
+            $pagina_actual = $pagination[3];
 
             $users = $this->user->getAllUsers($empezar_desde, $resultados_por_pagina);
-
-            
 
             if (isset($_POST['delete'])) {
 
                 $id = $_POST['id_usuario'];
+
+                var_dump($id);
 
                 $_SESSION['message'] = $this->user->deleteUser($id);
 
@@ -109,6 +121,22 @@
 
         public function advisories() {
             // Lógica para la página de inicio estática
+
+            $page = isset($_GET['pagina']) ? $_GET['pagina'] : null;
+            
+            $total_resultados = $this->admin->allAdvisory();
+
+            $pagination = $this->pagination($page, $total_resultados);
+
+            $resultados_por_pagina = $pagination[0];
+            $empezar_desde = $pagination[1];
+            $total_paginas = $pagination[2];
+            $pagina_actual = $pagination[3];
+
+            $advisories = $this->advisory->getAllAdvisories($empezar_desde, $resultados_por_pagina);
+
+            var_dump($advisories);
+
             include 'app/views/admin/advisories.php';
         }
 
