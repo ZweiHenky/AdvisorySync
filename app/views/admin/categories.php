@@ -9,7 +9,7 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="../app/styles/admin/config.css">
 	<link rel="stylesheet" href="../app/styles/admin/categories.css">
-	<title>AdminHub</title>
+	<title>Categorias</title>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
     <script type='module' src="../app/utils/admin/lenguage.js">	</script>
 </head>
@@ -44,15 +44,15 @@
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3 data-recent>Categories</h3>
+						<h3 data-recent>Categorias</h3>
 					</div>
 					<table>
 						<thead>
 							<tr>
-								<th data-user >Name</th>
-								<th data-date >Description</th>
-								<th data-status>Image</th>
-								<th>Subcategories</th>
+								<th data-user >Nombre</th>
+								<th data-date >Descripcción</th>
+								<th data-status>Imaguen</th>
+								<th>Subcategorias</th>
 							</tr>
 						</thead>
 						<tbody>

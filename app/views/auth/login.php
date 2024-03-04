@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Form</title>
+  <title>Formulario acceso</title>
   <link rel="stylesheet" href="../app/styles/login.css">
 </head>
 <body>
@@ -31,7 +31,7 @@
 
             ?>
             
-            <button id='btn-login' type="submit">Login</button>
+            <button id='btn-login' type="submit">Acceso</button>
         </form>
 
         <div class='texto'>

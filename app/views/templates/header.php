@@ -1,7 +1,7 @@
 <header id='header'>
     <nav>
         <div class="logo-header">
-            <img src="../app/assets/icons/logo.png" alt="">
+            <img src="../app/assets/icons/logo.png" alt="" >
             <ul class="menu">
                 <li><a href="../static/index">Inicio</a></li>
                 <li><a href="../static/about">Sobre Nosotros</a></li>
