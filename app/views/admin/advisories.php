@@ -46,12 +46,13 @@
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3 data-recent>Advisories</h3>
+						<h3 data-recent>Advisoris</h3>
 					</div>
 					<table>
 						<thead>
 							<tr>
 								<th data-user >Id</th>
+<<<<<<< HEAD
 								<th data-date >Title</th>
 								<th data-status>Date</th>
 								<th data-status>Category</th>
@@ -81,6 +82,70 @@
 								echo '</tr>';
 							}
 						?>
+=======
+								<th data-date >Titulo</th>
+								<th data-status>Fecha</th>
+								<th data-status>Categoria</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<p>1</p>
+								</td>
+								<td>
+									<p>Derivadas</p>
+								</td>
+								<td>
+									10-2-2000
+								</td>
+								<td>
+									<p>Matematicas</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>1</p>
+								</td>
+								<td>
+									<p>Derivadas</p>
+								</td>
+								<td>
+									10-2-2000
+								</td>
+								<td>
+									<p>Matematicas</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>2</p>
+								</td>
+								<td>
+									<p>Derivadas</p>
+								</td>
+								<td>
+									10-2-2000
+								</td>
+								<td>
+									<p>Matematicas</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>3</p>
+								</td>
+								<td>
+									<p>Derivadas</p>
+								</td>
+								<td>
+									10-2-2000
+								</td>
+								<td>
+									<p>Matematicas</p>
+								</td>
+							</tr>
+>>>>>>> 46901c97f533e9d7be5965435460f0ee5c6f9d0a
 						</tbody>
 					</table>
 				</div>
