@@ -9,7 +9,7 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="../app/styles/admin/config.css">
 	<link rel="stylesheet" href="../app/styles/admin/users.css">
-	<title>AdminHub</title>
+	<title>Usuarios</title>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
     <script type='module' src="../app/utils/admin/lenguage.js">	</script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -31,7 +31,7 @@
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1 data-title>Users</h1>
+					<h1 data-title>Usuarios</h1>
 				</div>
 			</div>
 
@@ -55,17 +55,17 @@
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3 data-recent>Users</h3>
+						<h3 data-recent>Usuarios</h3>
 					</div>
 					<table>
 						<thead>
 							<tr>
-								<th data-user >Name</th>
-								<th data-user >Email</th>
-								<th data-date >Last login</th>
-								<th data-status>Rating</th>
+								<th data-user >Nombre</th>
+								<th data-user >Correo</th>
+								<th data-date >Ultimo registro</th>
+								<th data-status>Estima</th>
 								<th>Tipo</th>
-								<th data-options>Options</th>
+								<th data-options>Opcciones</th>
 							</tr>
 						</thead>
 						<tbody>

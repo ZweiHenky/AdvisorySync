@@ -9,7 +9,7 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="../app/styles/admin/config.css">
 	<link rel="stylesheet" href="../app/styles/admin/home.css">
-	<title>AdminHub</title>
+	<title>Home</title>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
     <script type='module' src="../app/utils/admin/lenguage.js">	</script>
 </head>
@@ -62,14 +62,14 @@
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3 data-recent>Recent Orders</h3>
+						<h3 data-recent>Asesorias pendientes</h3>
 					</div>
 					<table>
 						<thead>
 							<tr>
-								<th data-user >User</th>
-								<th data-date >Date Order</th>
-								<th data-status>Status</th>
+								<th data-user >Usuario</th>
+								<th data-date >Fecha de la asesoria</th>
+								<th data-status>Estado</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -92,7 +92,7 @@
 					<table>
 						<thead>
 							<tr>
-								<th data-user >User</th>
+								<th data-user >Usuario</th>
 								<th data-date >Ranking</th>
 							</tr>
 						</thead>
