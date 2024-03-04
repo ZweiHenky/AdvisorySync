@@ -45,7 +45,7 @@
 				<li>
 					<i class='bx bxs-dollar-circle' ></i>
 					<span class="text">
-						<h3 class='counter'><?php echo $countAdviser;  ?></h3>
+						<h3 class='counter'><?php echo $countStudent;  ?></h3>
 						<p data-revenue>Cantidad de alumnos</p>
 					</span>
 				</li>

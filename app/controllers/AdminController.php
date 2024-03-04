@@ -3,17 +3,23 @@
     require 'app/models/admin/Admin.php';
     require 'app/models/User.php';
     require 'app/models/Advisory.php';
-
+    require 'app/models/Category.php';
+    // require 'app/models/SubCategory.php';
+    
     class AdminController{
         
         private $admin;
         private $user;
         private $advisory;
+        private $category;
+        // private $subCategory;
 
         public function __construct() {
             $this->admin = new Admin(Connection::conn());
             $this->user = new User(Connection::conn());
             $this->advisory = new Advisory(Connection::conn());
+            $this->category = new Category(Connection::conn());
+            // $this->subCategory = new SubCategory(Connection::conn());
         }
         
         public function pagination($page, $total_resultados) {
@@ -51,6 +57,7 @@
             $countStudent = $this->admin->countStudent();
 
             $page = isset($_GET['pagina']) ? $_GET['pagina'] : null;
+
             $total_resultados = $this->admin->allUsers();
 
             $pagination = $this->pagination($page, $total_resultados);
@@ -110,11 +117,6 @@
                 unset($_SESSION['message']);
             }
 
-        }
-
-        public function categories() {
-            // Lógica para la página de inicio estática
-            include 'app/views/admin/categories.php';
         }
 
         public function advisories() {
@@ -183,6 +185,179 @@
                 unset($_SESSION['message']);
             }
         }
+
+        public function categories() {
+
+            $page = isset($_GET['pagina']) ? $_GET['pagina'] : null;
+
+            $total_resultados = $this->admin->allCategories();
+
+            $pagination = $this->pagination($page, $total_resultados);
+
+            $resultados_por_pagina = $pagination[0];
+            $empezar_desde = $pagination[1];
+            $total_paginas = $pagination[2];
+            $pagina_actual = $pagination[3];
+
+            $categories = $this->category->getAllCategories($empezar_desde, $resultados_por_pagina);
+
+            if (isset($_POST['delete'])) {
+
+                $id = $_POST['id_categoria'];
+
+                $_SESSION['message'] = $this->category->deleteCategory($id);
+
+            }
+
+            if (isset($_GET['id'])) {
+
+                $id = $_GET['id'];
+
+                $_SESSION['userUpdate'] = $this->category->getCategory($id);
+
+            }
+
+            if(isset($_POST['create'])){
+                $nombre = $_POST['nombre'];
+                $descripcion = $_POST['descripcion'];
+                $imagen = $_FILES['imagen'];
+
+                // if (isset($imagen) || isset($nombre) || isset($descripcion) ) {
+                //     $_SESSION['crear'] = false;
+                // }
+
+                try {
+                    $_SESSION['crear'] = $this->category->createCategory($nombre, $descripcion, 'https://picsum.photos/200/300');
+                } catch (\Throwable $th) {
+                    $_SESSION['crear'] = false;
+                }
+            }
+
+            if(isset($_POST['update'])){
+                $nombre = $_POST['nombre'];
+                $descripcion = $_POST['descripcion'];
+                $imagen = isset($_FILES['imagen']) ? $_SESSION['userUpdate']['img'] : $_SESSION['userUpdate']['img'] ;
+
+                // if (isset($imagen) || isset($nombre) || isset($descripcion) ) {
+                //     $_SESSION['crear'] = false;
+                // }
+
+
+                try {
+                    $_SESSION['update'] = $this->category->updateCategory($_SESSION['userUpdate']['id_categoria'],$nombre, $descripcion, $imagen);
+                } catch (\Throwable $th) {
+                    $_SESSION['update'] = false;
+                }
+            }
+
+            if (isset($_POST['btnSearch'])) {
+                if ($_POST['search'] == '') {
+                    $categories = $this->category->getAllCategories($empezar_desde, $resultados_por_pagina);
+                }else{
+                    $categories = $this->category->getCategory($_POST['search']);
+                }
+            }
+
+            // Lógica para la página de inicio estática
+            include 'app/views/admin/categories.php';
+
+            if (isset($_SESSION['message'])) {
+                if ($_SESSION['message'] == true) {
+                    echo "
+                        <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Eliminacion',
+                            text: 'Se elimino con exito la categoria',
+                        }).then(function() {
+                            window.location.href = 'http://localhost/advisorySync/admin/categories';
+                        });
+                        </script> 
+                        ";
+                }else{
+                    echo "
+                    <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Eliminacion',
+                        text: 'No se pudo eliminar',
+                    }).then(function() {
+                        window.location.href = 'http://localhost/advisorySync/admin/categories';
+                    });
+                    </script> 
+                    ";
+                }
+                
+                unset($_SESSION['message']);
+            }
+
+            if (isset($_SESSION['crear'])) {
+                if ($_SESSION['crear'] == true) {
+                    echo "
+                        <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Creacion',
+                            text: 'Se creo con exito la categoria',
+                        }).then(function() {
+                            window.location.href = 'http://localhost/advisorySync/admin/categories';
+                        });
+                        </script> 
+                        ";
+                }else{
+                    echo "
+                    <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Creacion',
+                        text: 'No se pudo crear',
+                    }).then(function() {
+                        window.location.href = 'http://localhost/advisorySync/admin/categories';
+                    });
+                    </script> 
+                    ";
+                }
+                
+                unset($_SESSION['crear']);
+            }
+            if (isset($_SESSION['update'])) {
+                if ($_SESSION['update'] == true) {
+                    echo "
+                        <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Actualizacion',
+                            text: 'Se actualizo con exito la categoria',
+                        }).then(function() {
+                            window.location.href = 'http://localhost/advisorySync/admin/categories';
+                        });
+                        </script> 
+                        ";
+                }else{
+                    echo "
+                    <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Creacion',
+                        text: 'No se pudo actualizar',
+                    }).then(function() {
+                        window.location.href = 'http://localhost/advisorySync/admin/categories';
+                    });
+                    </script> 
+                    ";
+                }
+                
+                unset($_SESSION['userUpdate']);
+                unset($_SESSION['update']);
+            }
+
+        }
+
+        public function subCategories() {
+            // Lógica para la página de inicio estática
+            include 'app/views/admin/subCategories.php';
+        }
+
 
         // Otros métodos para páginas estáticas según sea necesario
     }

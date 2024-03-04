@@ -29,6 +29,12 @@
 					<span class="text" data-four>Categorias</span>
 				</a>
 			</li>
+			<!-- <li>
+				<a href="subCategories">
+					<i class='bx bxs-message-dots' ></i>
+					<span class="text" data-four>Sub Categorias</span>
+				</a>
+			</li> -->
 		</ul>
 		<ul class="side-menu">
 			<li>

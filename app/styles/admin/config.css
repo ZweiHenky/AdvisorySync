@@ -59,7 +59,7 @@ body {
 	height: 100%;
 	background: var(--light);
 	z-index: 1000;
-	font-family: var(--lato);
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	transition: .3s ease;
 	overflow-x: hidden;
 	scrollbar-width: none;
@@ -186,7 +186,7 @@ body {
 	display: flex;
 	align-items: center;
 	grid-gap: 24px;
-	font-family: var(--lato);
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	position: sticky;
 	top: 0;
 	left: 0;
@@ -310,7 +310,7 @@ body {
 #content main {
 	width: 100%;
 	padding: 36px 24px;
-	font-family: var(--poppins);
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	max-height: calc(100vh - 56px);
 	overflow-y: auto;
 }
@@ -433,20 +433,15 @@ body {
 	border-collapse: collapse;
 }
 #content main .table-data .order table th {
-	padding-bottom: 12px;
+	padding: 15px;
 	font-size: 13px;
 	text-align: left;
 	border-bottom: 1px solid var(--grey);
 }
 #content main .table-data .order table td {
-	padding: 16px 5px;
+	padding: 15px ;
 }
-#content main .table-data .order table tr td:first-child {
-	display: flex;
-	align-items: center;
-	grid-gap: 12px;
-	padding-left: 6px;
-}
+
 #content main .table-data .order table td img {
 	width: 36px;
 	height: 36px;
@@ -574,4 +569,142 @@ body {
     color: white;
     border: none;
     width: 100%;
+	cursor: pointer;
+}
+
+/* bottom create */
+
+.btn-create{
+    padding: 8px;
+    border-radius: 8px;
+    background-color: green;
+    color: white;
+    border: none;
+    width: 100%;
+	cursor: pointer;
+}
+
+.btn-update{
+    padding: 8px;
+    border-radius: 8px;
+    background-color: blue;
+    color: white;
+    border: none;
+    width: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 13px;
+	cursor: pointer;
+}
+
+.container-btn{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 100%;
+}
+
+
+
+/* Estilos del modal */
+.modal {
+    display: none; /* Por defecto, ocultar el modal */
+    position: fixed; /* Fijar la posición del modal */
+    z-index: 2000; /* Ubicar el modal por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    overflow: auto; /* Permitir desplazamiento si el contenido es demasiado grande */
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centrar verticalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del contenido */
+    border-radius: 10px;
+}
+
+/* Botón de cierre del modal */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo para el botón de enviar dentro del formulario */
+.modal-content button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para los campos de entrada en el formulario */
+.modal-content input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Estilos para el input de carga de imágenes */
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    color: #333;
+    margin-top: 10px; /* Añadir espacio entre los campos */
+}
+
+.custom-file-upload:hover {
+    background-color: #e0e0e0;
+}
+
+/* Estilos para el icono dentro del input */
+.custom-file-upload i {
+    margin-right: 8px;
+}
+
+/* Ocultar el input de carga de archivos */
+#imagen {
+    display: none;
+}
+
+
+
+/* Añadir un efecto de sombra cuando se desplaza */
+.modal-content {
+    animation: animatezoom 0.6s;
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
 }
