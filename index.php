@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 
 // Cargar archivos necesarios
 require_once 'app/controllers/StaticController.php';
