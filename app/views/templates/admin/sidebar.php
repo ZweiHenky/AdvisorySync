@@ -47,6 +47,16 @@
 					<span class="text" data-four>Sub Categorias</span>
 				</a>
 			</li>
+<<<<<<< HEAD
+=======
+			<li id='side-reviews' class=<?php echo $methodName == 'reviews' ? 'active' : ''; ?>>
+				<a href="reviews">
+					<i class='bx bxs-bar-chart-alt-2' ></i>
+					
+					<span class="text" data-four>Reseñas</span>
+				</a>
+			</li>
+>>>>>>> 85c153af2dba23c4a6c9dda97aa3d2dc80280c9f
 		</ul>
 		<ul class="side-menu">
 			<li>

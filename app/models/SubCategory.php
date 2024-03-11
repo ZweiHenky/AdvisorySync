@@ -29,6 +29,14 @@ class SubCategory {
         return $st->execute([ $nombre, $descripcion, $imagen, $id ]);
     }
 
+<<<<<<< HEAD
+=======
+    public function updateSubCategory($id_sub, $nombre, $id_categoria) {
+        $st = $this->conn->prepare("UPDATE sub_categorias SET nombre = ?, id_categoria = ? WHERE id_sub_categoria = ?");
+        return $st->execute([ $nombre, $id_categoria, $id_sub ]);
+    }
+
+>>>>>>> 85c153af2dba23c4a6c9dda97aa3d2dc80280c9f
     public function deleteSubCategory($id) {
         $st = $this->conn->prepare("DELETE FROM sub_categorias WHERE id_sub = ?");
         return $st->execute([$id]);
