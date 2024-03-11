@@ -20,7 +20,9 @@ class Auth{
     }
 
     public function logOut()  {
-        
+        unset($_SESSION['usuario']);
+        session_destroy();
+        header('location: http://localhost/advisorysync/auth/login');
     }
 }
 

@@ -62,7 +62,7 @@
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3 data-recent>Asesorias pendientes</h3>
+						<h3 data-recent>Asesorias Recientes</h3>
 					</div>
 					<table>
 						<thead>
@@ -117,6 +117,7 @@
 	
 
 	<script src="../app/utils/admin/script.js"></script>
+	<script src="../app/utils/admin/navbarChangeBtn.js"></script>
 	<script src="../app/utils/admin/counter.js"></script>
 </body>
 </html>

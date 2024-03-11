@@ -30,7 +30,7 @@
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1 data-title>Panel</h1>
+					<h1 data-title>Asesorias</h1>
 				</div>
 			</div>
 
@@ -104,6 +104,7 @@
 	
 
 	<script src="../app/utils/admin/script.js"></script>
+	<script src="../app/utils/admin/navbarChangeBtn.js"></script>
 	<script src="../app/utils/admin/counter.js"></script>
 </body>
 </html>

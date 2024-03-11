@@ -31,7 +31,7 @@
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1 data-title>Panel</h1>
+					<h1 data-title>Categorias</h1>
 				</div>
 			</div>
 
@@ -118,9 +118,9 @@
             <span class="closeUpdate">&times;</span>
             <form action="/advisorysync/admin/categories" enctype="multipart/form-data" method='POST'>
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required value= <?php echo $_SESSION['userUpdate']['nombre']; ?>>
+                <input type="text" id="nombre" name="nombre" required value= <?php echo $_SESSION['userUpdate'][0]['nombre']; ?>>
                 <label for="descripcion">Descripcion:</label>
-                <input type="text" id="descripcion" name="descripcion" value=" <?php echo $_SESSION['userUpdate']['descripcion']; ?>" required>
+                <input type="text" id="descripcion" name="descripcion" value=" <?php echo $_SESSION['userUpdate'][0]['descripcion']; ?>" required>
 				<div>
 					<label for="imagen" class="custom-file-upload">
 						<i class="bx bx-cloud-upload"></i> Subir Imagen
@@ -134,58 +134,58 @@
 
     <script>
 		// Obtener el modal
-		var modal = document.getElementById("createModal");
+		var modalCreate = document.getElementById("createModal");
 
 		// Obtener el botón que abre el modal
-		var btn = document.getElementById("openCreateModal");
+		var btnCreate  = document.getElementById("openCreateModal");
 
 		// Obtener el elemento <span> que cierra el modal
-		var span = document.getElementsByClassName("closeCreate")[0];
+		var spanCreate  = document.getElementsByClassName("closeCreate")[0];
 
 		// Cuando el usuario haga clic en el botón, abrir el modal
-		btn.addEventListener('click', ()=>{
-			modal.style.display = "block";
+		btnCreate.addEventListener('click', ()=>{
+			modalCreate.style.display = "block";
 		})
 
 		// Cuando el usuario haga clic en <span> (x), cerrar el modal
-		span.onclick = function() {
-			modal.style.display = "none";
+		spanCreate.onclick = function() {
+			modalCreate.style.display = "none";
 		}
 
 		// Cuando el usuario haga clic fuera del modal, cerrarlo
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
+		// window.onclick = function(event) {
+		// 	if (event.target == modalCreate) {
+		// 		modalCreate.style.display = "none";
+		// 	}
+		// }
 
 
 
 		// Obtener el modal
-		var modal = document.getElementById("updateModal");
+		var modalUpdate = document.getElementById("updateModal");
 
 		// Obtener el botón que abre el modal
-		var btn = document.getElementById("openUpdateModal");
+		var btnUpdate = document.getElementById("openUpdateModal");
 
 		// Obtener el elemento <span> que cierra el modal
-		var span = document.getElementsByClassName("closeUpdate")[0];
+		var spanUpdate = document.getElementsByClassName("closeUpdate")[0];
 
 		// Cuando el usuario haga clic en el botón, abrir el modal
-		btn.addEventListener('click', ()=>{
-			modal.style.display = "block";
+		btnUpdate.addEventListener('click', ()=>{
+			modalUpdate.style.display = "block";
 		})
 
 		// Cuando el usuario haga clic en <span> (x), cerrar el modal
-		span.onclick = function() {
-			modal.style.display = "none";
+		spanUpdate.onclick = function() {
+			modalUpdate.style.display = "none";
 		}
 
 		// Cuando el usuario haga clic fuera del modal, cerrarlo
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
+		// window.onclick = function(event) {
+		// 	if (event.target == modalUpdate) {
+		// 		modalUpdate.style.display = "none";
+		// 	}
+		// }
 
 		// Obtener la cadena de consulta de la URL
 		var queryString = window.location.search;
@@ -200,13 +200,22 @@
 		console.log(id);
 
 		if (id) {
-			modal.style.display = "block";
+			modalUpdate.style.display = "block";
 		}
+
+		window.onclick = function(event) {
+    if (event.target == modalCreate) {
+        modalCreate.style.display = "none";
+    } else if (event.target == modalUpdate) {
+        modalUpdate.style.display = "none";
+    }
+}
 
 	</script>
 	
 
 	<script src="../app/utils/admin/script.js"></script>
+	<script src="../app/utils/admin/navbarChangeBtn.js"></script>
 	<script src="../app/utils/admin/counter.js"></script>
 </body>
 </html>

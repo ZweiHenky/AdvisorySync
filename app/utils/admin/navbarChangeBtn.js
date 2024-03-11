@@ -6,5 +6,3 @@ let partUrl = url.split('/');
 let btnSearch = document.querySelector('#search')
 
 btnSearch.setAttribute('action', url)
-
-console.log(btnSearch);
