@@ -1,22 +1,10 @@
 <?php 
-<<<<<<< HEAD
-
-
-    
-=======
->>>>>>> 85c153af2dba23c4a6c9dda97aa3d2dc80280c9f
     require 'app/models/admin/Admin.php';
     require 'app/models/User.php';
     require 'app/models/Advisory.php';
     require 'app/models/Category.php';
-<<<<<<< HEAD
-
-
-    require 'app/models/SubCategory.php';
-=======
     require 'app/models/SubCategory.php';
     require 'app/models/Review.php';
->>>>>>> 85c153af2dba23c4a6c9dda97aa3d2dc80280c9f
     
     class AdminController{
         
@@ -25,10 +13,7 @@
         private $advisory;
         private $category;
         private $subCategory;
-<<<<<<< HEAD
-=======
         private $review;
->>>>>>> 85c153af2dba23c4a6c9dda97aa3d2dc80280c9f
 
         public function __construct() {
             $this->admin = new Admin(Connection::conn());
@@ -36,10 +21,7 @@
             $this->advisory = new Advisory(Connection::conn());
             $this->category = new Category(Connection::conn());
             $this->subCategory = new SubCategory(Connection::conn());
-<<<<<<< HEAD
-=======
             $this->review = new Review(Connection::conn());
->>>>>>> 85c153af2dba23c4a6c9dda97aa3d2dc80280c9f
         }
         
         public function pagination($page, $total_resultados) {
@@ -446,11 +428,8 @@
 
             }
 
-<<<<<<< HEAD
-=======
             
 
->>>>>>> 85c153af2dba23c4a6c9dda97aa3d2dc80280c9f
             if(isset($_POST['create'])){
                 $nombre = $_POST['nombre'];
                 $id = $_POST['id_categoria'];
@@ -524,10 +503,7 @@
                 
                 unset($_SESSION['crear']);
             }
-<<<<<<< HEAD
-=======
             
->>>>>>> 85c153af2dba23c4a6c9dda97aa3d2dc80280c9f
         }
 
 
