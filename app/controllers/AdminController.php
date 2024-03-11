@@ -1,10 +1,10 @@
-<?php
-
+<?php 
     require 'app/models/admin/Admin.php';
     require 'app/models/User.php';
     require 'app/models/Advisory.php';
     require 'app/models/Category.php';
-    // require 'app/models/SubCategory.php';
+    require 'app/models/SubCategory.php';
+    require 'app/models/Review.php';
     
     class AdminController{
         
@@ -12,14 +12,16 @@
         private $user;
         private $advisory;
         private $category;
-        // private $subCategory;
+        private $subCategory;
+        private $review;
 
         public function __construct() {
             $this->admin = new Admin(Connection::conn());
             $this->user = new User(Connection::conn());
             $this->advisory = new Advisory(Connection::conn());
             $this->category = new Category(Connection::conn());
-            // $this->subCategory = new SubCategory(Connection::conn());
+            $this->subCategory = new SubCategory(Connection::conn());
+            $this->review = new Review(Connection::conn());
         }
         
         public function pagination($page, $total_resultados) {
@@ -40,6 +42,14 @@
         }
 
         public function home() {
+
+            if (!$_SESSION['usuario'] ){
+                header('location: http://localhost/advisorysync/auth/login');
+            }else{
+                if ($_SESSION['usuario']['is_admin'] == false) {
+                    header('location: http://localhost/advisorysync/static/home');
+                }
+            }
             // Lógica para la página de inicio estática
 
             $countAdvisory = $this->admin->countAdvisory();
@@ -52,6 +62,13 @@
         }
 
         public function users() {
+            if (!$_SESSION['usuario'] ){
+                header('location: http://localhost/advisorysync/auth/login');
+            }else{
+                if ($_SESSION['usuario']['is_admin'] == false) {
+                    header('location: http://localhost/advisorysync/static/home');
+                }
+            }
 
             $countAdviser = $this->admin->countAdviser();
             $countStudent = $this->admin->countStudent();
@@ -120,6 +137,13 @@
         }
 
         public function advisories() {
+            if (!$_SESSION['usuario'] ){
+                header('location: http://localhost/advisorysync/auth/login');
+            }else{
+                if ($_SESSION['usuario']['is_admin'] == false) {
+                    header('location: http://localhost/advisorysync/static/home');
+                }
+            }
             // Lógica para la página de inicio estática
 
             $moreUsedCategory = $this->admin->moreUsedCategory();
@@ -187,6 +211,13 @@
         }
 
         public function categories() {
+            if (!$_SESSION['usuario'] ){
+                header('location: http://localhost/advisorysync/auth/login');
+            }else{
+                if ($_SESSION['usuario']['is_admin'] == false) {
+                    header('location: http://localhost/advisorysync/static/home');
+                }
+            }
 
             $page = isset($_GET['pagina']) ? $_GET['pagina'] : null;
 
@@ -236,7 +267,7 @@
             if(isset($_POST['update'])){
                 $nombre = $_POST['nombre'];
                 $descripcion = $_POST['descripcion'];
-                $imagen = isset($_FILES['imagen']) ? $_SESSION['userUpdate']['img'] : $_SESSION['userUpdate']['img'] ;
+                $imagen = isset($_FILES['imagen']) ? $_SESSION['userUpdate'][0]['img'] : $_SESSION['userUpdate'][0]['img'] ;
 
                 // if (isset($imagen) || isset($nombre) || isset($descripcion) ) {
                 //     $_SESSION['crear'] = false;
@@ -244,7 +275,7 @@
 
 
                 try {
-                    $_SESSION['update'] = $this->category->updateCategory($_SESSION['userUpdate']['id_categoria'],$nombre, $descripcion, $imagen);
+                    $_SESSION['update'] = $this->category->updateCategory($_SESSION['userUpdate'][0]['id_categoria'],$nombre, $descripcion, $imagen);
                 } catch (\Throwable $th) {
                     $_SESSION['update'] = false;
                 }
@@ -354,10 +385,153 @@
         }
 
         public function subCategories() {
+            if (!$_SESSION['usuario'] ){
+                header('location: http://localhost/advisorysync/auth/login');
+            }else{
+                if ($_SESSION['usuario']['is_admin'] == false) {
+                    header('location: http://localhost/advisorysync/static/home');
+                }
+            }
+
+            $categories = $this->admin->allCategory();
+
+            $page = isset($_GET['pagina']) ? $_GET['pagina'] : null;
+
+            $total_resultados = $this->admin->allSubCategories();
+
+            $pagination = $this->pagination($page, $total_resultados);
+
+            $resultados_por_pagina = $pagination[0];
+            $empezar_desde = $pagination[1];
+            $total_paginas = $pagination[2];
+            $pagina_actual = $pagination[3];
+
+            $subCategories = $this->subCategory->getAllSubCategories($empezar_desde, $resultados_por_pagina);
+
+            if (isset($_POST['btnSearch'])) {
+                if ($_POST['search'] == '') {
+                    $subCategories = $this->subCategory->getAllSubCategories($empezar_desde, $resultados_por_pagina);
+                }else{
+                    $subCategories = $this->subCategory->getSubCategory($_POST['search']);
+                }
+            }
+
+            if (isset($_POST['delete'])) {
+
+                $id = $_POST['id_sub'];
+
+                var_dump($id);
+
+                $_SESSION['message'] = $this->subCategory->deleteSubCategory($id);
+
+                var_dump($_SESSION['message']);
+
+            }
+
+            
+
+            if(isset($_POST['create'])){
+                $nombre = $_POST['nombre'];
+                $id = $_POST['id_categoria'];
+
+                try {
+                    $_SESSION['crear'] = $this->subCategory->createSubCategory($nombre, $id);
+                } catch (\Throwable $th) {
+                    $_SESSION['crear'] = false;
+                }
+            }
+
             // Lógica para la página de inicio estática
             include 'app/views/admin/subCategories.php';
+
+            if (isset($_SESSION['message'])) {
+                if ($_SESSION['message'] == true) {
+                    echo "
+                        <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Eliminacion',
+                            text: 'Se elimino con exito la Sub Categoria',
+                        }).then(function() {
+                            window.location.href = 'http://localhost/advisorySync/admin/subCategories';
+                        });
+                        </script> 
+                        ";
+                }else{
+                    echo "
+                    <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Eliminacion',
+                        text: 'No se pudo eliminar',
+                    }).then(function() {
+                        window.location.href = 'http://localhost/advisorySync/admin/subCategories';
+                    });
+                    </script> 
+                    ";
+                }
+                
+                unset($_SESSION['message']);
+            }
+
+            if (isset($_SESSION['crear'])) {
+                if ($_SESSION['crear'] == true) {
+                    echo "
+                        <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Creacion',
+                            text: 'Se creo con exito la sub categoria',
+                        }).then(function() {
+                            window.location.href = 'http://localhost/advisorySync/admin/subCategories';
+                        });
+                        </script> 
+                        ";
+                }else{
+                    echo "
+                    <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Creacion',
+                        text: 'No se pudo crear',
+                    }).then(function() {
+                        window.location.href = 'http://localhost/advisorySync/admin/subCategories';
+                    });
+                    </script> 
+                    ";
+                }
+                
+                unset($_SESSION['crear']);
+            }
+            
         }
 
+
+        public function reviews() {
+            if (!$_SESSION['usuario'] ){
+                header('location: http://localhost/advisorysync/auth/login');
+            }else{
+                if ($_SESSION['usuario']['is_admin'] == false) {
+                    header('location: http://localhost/advisorysync/static/home');
+                }
+            }
+
+           
+            $page = isset($_GET['pagina']) ? $_GET['pagina'] : null;
+
+            $total_resultados = $this->admin->allReviews();
+
+            $pagination = $this->pagination($page, $total_resultados);
+
+            $resultados_por_pagina = $pagination[0];
+            $empezar_desde = $pagination[1];
+            $total_paginas = $pagination[2];
+            $pagina_actual = $pagination[3];
+
+            $reviews = $this->review->getAllReviews($empezar_desde, $resultados_por_pagina);
+
+            include 'app/views/admin/reviews.php';
+        }
 
         // Otros métodos para páginas estáticas según sea necesario
     }

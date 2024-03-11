@@ -19,7 +19,7 @@ class Category {
         FROM categorias 
         WHERE nombre = ? or id_categoria = ?");
         $st->execute([$data,$data]);
-        return $st->fetch(PDO::FETCH_ASSOC);
+        return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function updateCategory($id, $nombre, $descripcion, $imagen) {

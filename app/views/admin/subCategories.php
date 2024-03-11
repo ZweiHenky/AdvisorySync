@@ -12,6 +12,7 @@
 	<title>Categorias</title>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
     <script type='module' src="../app/utils/admin/lenguage.js">	</script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -36,7 +37,7 @@
 
 			<ul class="box-info">
 				<li>
-					<button class='btn-create'>Nueva Sub Categoria</button>
+					<button id='openCreateModal' class='btn-create'>Nueva Sub Categoria</button>
 				</li>
 			</ul>
 
@@ -53,16 +54,32 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									<p>Diferencial</p>
-								</td>
-								<td>
-									Matematicas
-								</td>
-							</tr>
+						<?php
+							foreach($subCategories as $subCategory){
+								echo '<tr>';
+								echo "<td>
+										<p>{$subCategory['nombre']}</p>
+									  </td>";
+								echo "<td>
+										<p>{$subCategory['nombreCategoria']}</p>
+									  </td>";								
+								echo "<td>
+										<div class='container-btn'>
+											<form action='/advisorysync/admin/subCategories' method='post'>
+												<input type='hidden' name='id_sub' value={$subCategory['id_sub']}>
+													<button class='btn-delete' type='submit' name='delete'>Borrar</button>
+											</form>
+											<a class='btn-update' id='openUpdateModal' href=?id={$subCategory['id_sub']} >Actualizar</a>
+										</div>
+									  </td>";
+								echo '</tr>';
+							}
+						?>
 						</tbody>
 					</table>
+					<?php
+						include('app/views/templates/admin/pagination.php');
+					?>
 				</div>
 			</div>
 		</main>
@@ -70,6 +87,46 @@
 		
 	</section>
 	<!-- CONTENT -->
+
+	<div id="createModal" class="modal" >
+        <div class="modal-content">
+            <span class="closeCreate">&times;</span>
+            <form action="/advisorysync/admin/subCategories" enctype="multipart/form-data" method='POST'>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <button type="submit" name='create'>Crear</button>
+            </form>
+        </div>
+    </div>
+
+
+	<script>
+		// Obtener el modal
+		var modal = document.getElementById("createModal");
+
+		// Obtener el botón que abre el modal
+		var btn = document.getElementById("openCreateModal");
+
+		// Obtener el elemento <span> que cierra el modal
+		var span = document.getElementsByClassName("closeCreate")[0];
+
+		// Cuando el usuario haga clic en el botón, abrir el modal
+		btn.addEventListener('click', ()=>{
+			modal.style.display = "block";
+		})
+
+		// Cuando el usuario haga clic en <span> (x), cerrar el modal
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		// Cuando el usuario haga clic fuera del modal, cerrarlo
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
 	
 
 	<script src="../app/utils/admin/script.js"></script>
