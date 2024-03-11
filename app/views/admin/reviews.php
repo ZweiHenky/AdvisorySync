@@ -9,7 +9,7 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="../app/styles/admin/config.css">
 	<link rel="stylesheet" href="../app/styles/admin/categories.css">
-	<title>Categorias</title>
+	<title>Reseñas</title>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
     <script type='module' src="../app/utils/admin/lenguage.js">	</script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -31,51 +31,35 @@
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1 data-title>Categorias</h1>
+					<h1 data-title>Reseñas</h1>
 				</div>
 			</div>
-
-			<ul class="box-info">
-				<li>
-					<button id='openCreateModal' class='btn-create'>Nueva categoria</button>
-				</li>
-			</ul>
 
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3 data-recent>Categorias</h3>
+						<h3 data-recent>Reseñas</h3>
 					</div>
 					<table>
 						<thead>
 							<tr>
-								<th data-user >Nombre</th>
-								<th data-date >Descripción</th>
-								<th data-status>Imagen</th>
-								<th data-status>Opciones</th>
+								<th data-user >Comentario</th>
+								<th data-date >Valoracion</th>
+								<th data-status>Usuario evaluado</th>
 							</tr>
 						</thead>
 						<tbody>
 						<?php
-							foreach($categories as $category){
+							foreach($reviews as $review){
 								echo '<tr>';
 								echo "<td>
-										<p>{$category['nombre']}</p>
+										<p>{$review['comentario']}</p>
 									  </td>";
 								echo "<td>
-										<p>{$category['descripcion']}</p>
+										<p>{$review['valoracion']}</p>
 									  </td>";
 								echo "<td>
-										<img src='{$category['img']}'>
-									  </td>";
-								echo "<td>
-										<div class='container-btn'>
-											<form action='/advisorysync/admin/categories' method='post'>
-												<input type='hidden' name='id_categoria' value={$category['id_categoria']}>
-													<button class='btn-delete' type='submit' name='delete'>Borrar</button>
-											</form>
-											<a class='btn-update' id='openUpdateModal' href=?id={$category['id_categoria']} >Actualizar</a>
-										</div>
+										<p>{$review['nombreUsuario']}</p>
 									  </td>";
 								echo '</tr>';
 							}
@@ -93,44 +77,6 @@
 		
 	</section>
 	<!-- CONTENT -->
-
-	<div id="createModal" class="modal" >
-        <div class="modal-content">
-            <span class="closeCreate">&times;</span>
-            <form action="/advisorysync/admin/categories" enctype="multipart/form-data" method='POST'>
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-                <label for="descripcion">Descripcion:</label>
-                <input type="text" id="descripcion" name="descripcion" required>
-				<div>
-					<label for="imagen" class="custom-file-upload">
-						<i class="bx bx-cloud-upload"></i> Subir Imagen
-					</label>
-					<input type="file" id="imagen" name="imagen" accept="image/*">
-				</div>
-                <button type="submit" name='create'>Crear</button>
-            </form>
-        </div>
-    </div>
-
-	<div id="updateModal" class="modal" >
-        <div class="modal-content">
-            <span class="closeUpdate">&times;</span>
-            <form action="/advisorysync/admin/categories" enctype="multipart/form-data" method='POST'>
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required value= <?php echo $_SESSION['userUpdate'][0]['nombre']; ?>>
-                <label for="descripcion">Descripcion:</label>
-                <input type="text" id="descripcion" name="descripcion" value=" <?php echo $_SESSION['userUpdate'][0]['descripcion']; ?>" required>
-				<div>
-					<label for="imagen" class="custom-file-upload">
-						<i class="bx bx-cloud-upload"></i> Subir Imagen
-					</label>
-					<input type="file" id="imagen" name="imagen" accept="image/*">
-				</div>
-                <button type="submit" name='update'>Modificar</button>
-            </form>
-        </div>
-    </div>
 
     <script>
 		// Obtener el modal

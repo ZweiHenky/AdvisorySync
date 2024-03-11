@@ -9,6 +9,6 @@
 			</form>
 			<input type="checkbox" id="switch-mode" hidden>
 			<label for="switch-mode" class="switch-mode"></label>
-			<button class='lenguage'>English</button>
+			<!-- <button class='lenguage'>English</button> -->
 		</nav>
 		<!-- NAVBAR -->

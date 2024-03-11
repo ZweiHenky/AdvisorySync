@@ -16,7 +16,7 @@ class User {
     public function getUser($data) {
         $st = $this->conn->prepare("SELECT * FROM usuarios u left join resenas r on u.id_usuario = r.id_usuario WHERE nombre = ? or correo = ?");
         $st->execute([$data, $data]);
-        return $st->fetchAll(PDO::FETCH_ASSOC);
+        return $st->fetchU(PDO::FETCH_ASSOC);
     }
 
     public function updateUser($id, $username, $email) {

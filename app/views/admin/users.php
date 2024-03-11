@@ -64,7 +64,7 @@
 								<th data-date >Ultimo acceso</th>
 								<th data-status>Calificacion</th>
 								<th>Tipo</th>
-								<th data-options>Opcciones</th>
+								<th data-options>Opciones</th>
 							</tr>
 						</thead>
 						<tbody>
