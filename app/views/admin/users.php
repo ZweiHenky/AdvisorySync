@@ -62,6 +62,7 @@
 								<th data-user >Nombre</th>
 								<th data-user >Correo</th>
 								<th data-date >Ultimo acceso</th>
+								<th data-date >Horario</th>
 								<th data-status>Calificacion</th>
 								<th>Tipo</th>
 								<th data-options>Opciones</th>
@@ -71,12 +72,42 @@
 							<?php
 
 								foreach($users as $user){
+									
+
+									// Decodificar la cadena JSON a un array asociativo
+									$horarios = explode(",", $user['horarios']);
+									
 									echo "<tr>";
 									echo "<td>
 											<p>{$user['nombre']}</p>
 										</td>";
 									echo "<td>{$user['correo']}</td>";
 									echo "<td>{$user['ult_sesion']}</td>";
+
+									echo "<td>";
+									echo "<ul>";
+									if (count($horarios) == 1) {
+										echo 'no tiene horarios';
+									}else{
+										foreach ($horarios as $horario) {
+
+											$horario = str_replace(["{", "}", "'", '"'], '', $horario);
+											if (strpos($horario, 'null')) {
+												echo '';
+											}else{
+												echo $horario  . '<br><br>';
+											}
+											
+
+										
+										echo "</li>";
+									}
+									}
+									
+									echo "</ul>";
+									echo "</td>";
+
+									
 									if ($user['valoracion'] == null) {
 										echo "<td>
 											<p>No tiene</p>

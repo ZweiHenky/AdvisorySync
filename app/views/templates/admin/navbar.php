@@ -3,7 +3,7 @@
 			<i class='bx bx-menu' ></i>
 			<form id='search' method='post'>
 				<div class="form-input">
-					<input type="search" name='search' placeholder="Search...">
+					<input type="search" name='search' placeholder="Buscar...">
 					<button type="submit" name='btnSearch' class="search-btn"><i class='bx bx-search' ></i></button>
 				</div>
 			</form>

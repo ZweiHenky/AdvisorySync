@@ -106,6 +106,27 @@ class Admin{
        return$consult->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function allMessages(){
+        $sql ='SELECT count(*) from mensajes';
+        $consult = $this->conn->prepare($sql);
+        $consult->execute();
+        return $consult->fetchColumn();
+    }
+
+    public function allUserRoom(){
+        $sql ='SELECT count(*) from salas_usuarios';
+        $consult = $this->conn->prepare($sql);
+        $consult->execute();
+        return $consult->fetchColumn();
+    }
+
+    public function allNotification(){
+        $sql ='SELECT count(*) from notificaciones';
+        $consult = $this->conn->prepare($sql);
+        $consult->execute();
+        return $consult->fetchColumn();
+    }
+
 }
 
 ?>

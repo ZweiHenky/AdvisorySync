@@ -59,7 +59,7 @@
 										<p>{$review['valoracion']}</p>
 									  </td>";
 								echo "<td>
-										<p>{$review['nombreUsuario']}</p>
+										<p>{$review['nombre']}</p>
 									  </td>";
 								echo '</tr>';
 							}
