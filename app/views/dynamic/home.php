@@ -6,7 +6,6 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../app/utils/dinamyc/tailwind.config.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.3/dist/full.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body class='bg-background'>
@@ -38,7 +37,8 @@
                 </li>
                 <li class='flex gap-2 items-center'>
                     <img class='w-[20px] h-auto' src="../app/assets/icons/logOut.svg" alt="" >
-                    <p>Cerrar Sesion</p>
+                    
+                    <a href="/advisorysync/auth/logOut"><p>Cerrar Sesion</p></a>
                 </li>
             </ul>
 
@@ -57,21 +57,30 @@
 
     <main>
         <div class='mt-5 w-full p-5'>
-            <form class='flex *:p-3 *:rounded gap-5' action="">
-                <input class='flex-auto ' type="text" name="" id="" placeholder='Buscar Publicacion'>
-                <button class='flex-auto bg-primary text-white'>Buscar</button>
+            <form class='flex *:rounded gap-5 flex-col' action="">
+                <div class=' flex *:p-2 gap-5'>
+                    <input class='basis-1/2' type="text" name="" id="" placeholder='Buscar Publicacion'>
+                    <select name="" id="" class='basis-1/2'>
+                        <option value="">categorias</option>
+                    </select>
+                </div>
+                <button class='p-3 bg-primary text-white'>Buscar</button>
             </form>
         </div>
 
-        <section class='w-[90%] p-2 *:p-2 mx-auto relative bg-white rounded'>
-            <p class='absolute right-0 top-0 '>usuario</p>
-            <h3>Titulo</h3>
-            <p class='badge badge-secondary badge-outline'>Categoria</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, nobis? Neque minus magnam sint quibusdam nostrum velit officiis et earum rerum est? Doloribus inventore deleniti saepe optio repellat atque quam.</p>
-            <button>Seleccionar Horario</button>
+        <section class='w-[90%] h-[400px] *:p-2 mx-auto relative bg-white rounded'>
+            <p class='absolute right-0 top-0 p-4 text-xl'>usuario</p>
+            <h3 class='text-xl'>Titulo</h3>
+            <div class='mt-4'>
+                <span class='bg-purple-100 text-purple-800 text-xs font-medium p-2 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400'>Categoria</span>
+            </div>
+            <div class='mt-4'>
+                <p class='text-balance'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, nobis? Neque minus magnam sint quibusdam nostrum velit officiis et earum rerum est? Doloribus inventore deleniti saepe optio repellat atque quam.</p>
+            </div>
+            <button >Seleccionar Horario</button>
             
-            <p>dias</p>
-            <button>Aceptar</button>
+            <p class='absolute left-0 bottom-0 p-4 '>dias</p>
+            <button class='absolute right-0 bottom-0 p-4 '>Aceptar</button>
         </section>
     </main>
 
