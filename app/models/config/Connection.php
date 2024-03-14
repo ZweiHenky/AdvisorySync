@@ -5,7 +5,7 @@ class Connection{
     private static $host = 'localhost'; // Normalmente 'localhost' si estás trabajando de manera local
     private static $db = 'advisorysync';
     private static $user = 'root';
-    private static $password = 'root1234';
+    private static $password = '';
 
     public static function conn()
     {
