@@ -8,18 +8,14 @@ class Review {
     }
 
     public function getReview($data) {
-        $st = $this->conn->prepare("SELECT * FROM resenas r left join usuarios r on u.id_usuario = u.id_usuario WHERE comentario = ? or valoracion = ?");
-        $st->execute([$data, $data]);
+        $st = $this->conn->prepare(
+        "SELECT r.comentario, r.valoracion, u.nombre FROM resenas r INNER join usuarios u on r.id_usuario = u.id_usuario WHERE r.valoracion = ?");
+        $st->execute([floatval($data)]);
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function deleteReview($id) {
-        $st = $this->conn->prepare("DELETE FROM resenas WHERE id_resena = ?");
-        return $st->execute([$id]);
-    }
-
     public function getAllReviews($empezar_desde, $resultados_por_pagina) {
-        $st = $this->conn->query("SELECT r.*, u.nombre, u.apellidos as nombreUsuario 
+        $st = $this->conn->query("SELECT r.comentario, r.valoracion, u.nombre 
         FROM resenas r
         inner join usuarios u
         on r.id_usuario = u.id_usuario

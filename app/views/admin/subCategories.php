@@ -69,7 +69,7 @@
 												<input type='hidden' name='id_sub' value={$subCategory['id_sub']}>
 													<button class='btn-delete' type='submit' name='delete'>Borrar</button>
 											</form>
-											<a class='btn-update' id='openUpdateModal' href=?id={$subCategory['id_sub']} >Actualizar</a>
+											<a class='btn-update' id='openUpdateModal' name='update' href=?id_sub={$subCategory['id_sub']} >Actualizar</a>
 										</div>
 									  </td>";
 								echo '</tr>';
@@ -94,7 +94,6 @@
             <form action="/advisorysync/admin/subCategories" enctype="multipart/form-data" method='POST'>
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
-<<<<<<< HEAD
                 <div>
 					<select name="id_categoria" id="">
 						<option value="">categorias</option>
@@ -108,41 +107,81 @@
 					</select>
 				</div>
 				
-=======
->>>>>>> 85c153af2dba23c4a6c9dda97aa3d2dc80280c9f
                 <button type="submit" name='create'>Crear</button>
             </form>
         </div>
     </div>
 
-<<<<<<< HEAD
-=======
+	<div id="updateModal" class="modal" >
+        <div class="modal-content">
+            <span class="closeUpdate">&times;</span>
+            <form action="/advisorysync/admin/subCategories" enctype="multipart/form-data" method='POST'>
+                <label for="nombre">Nombre:</label>
+				<input type="text" id="nombre" name="nombre" required value= <?php echo $_SESSION['subCategoryUpdate'][0]['nombre']; ?>>
+				
+                <button type="submit" name="update">Modificar</button>
+            </form>
+        </div>
+    </div>
 
->>>>>>> 85c153af2dba23c4a6c9dda97aa3d2dc80280c9f
 	<script>
 		// Obtener el modal
-		var modal = document.getElementById("createModal");
-
+		var modalCreate = document.getElementById("createModal");
 		// Obtener el botón que abre el modal
-		var btn = document.getElementById("openCreateModal");
-
+		var btnCreate = document.getElementById("openCreateModal");
 		// Obtener el elemento <span> que cierra el modal
-		var span = document.getElementsByClassName("closeCreate")[0];
-
+		var spanCreate = document.getElementsByClassName("closeCreate")[0];
 		// Cuando el usuario haga clic en el botón, abrir el modal
-		btn.addEventListener('click', ()=>{
-			modal.style.display = "block";
+		btnCreate.addEventListener('click', ()=>{
+			modalCreate.style.display = "block";
 		})
-
 		// Cuando el usuario haga clic en <span> (x), cerrar el modal
-		span.onclick = function() {
+		spanCreate.onclick = function() {
 			modal.style.display = "none";
 		}
-
 		// Cuando el usuario haga clic fuera del modal, cerrarlo
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
+		//window.onclick = function(event) {
+		//	if (event.target == modal) {
+		//		modal.style.display = "none";
+		//	}
+		//}
+
+
+		//----------------------------------------
+
+		// Obtener el modal
+		var modalUpdate = document.getElementById("updateModal");
+		// Obtener el botón que abre el modal
+		var btnUpdate = document.getElementById("openUpdateModal");
+		// Obtener el elemento <span> que cierra el modal
+		var spanUpdate = document.getElementsByClassName("closeUpdate")[0];
+		// Cuando el usuario haga clic en el botón, abrir el modal
+		btnUpdate.addEventListener('click', ()=>{
+			modalUpdate.style.display = "block";
+		})
+		// Cuando el usuario haga clic en <span> (x), cerrar el modal
+		spanUpdate.onclick = function() {
+			modalUpdate.style.display = "none";
+		}
+			// Obtener la cadena de consulta de la URL
+		var queryString = window.location.search;
+
+			// Parsear la cadena de consulta para obtener los parámetros
+			var urlParams = new URLSearchParams(queryString);
+
+			// Obtener el valor del parámetro "id"
+			var id = urlParams.get('id_sub');
+
+			// Mostrar el valor del parámetro "id" en la consola
+			console.log(id);
+
+			if (id) {
+				modalUpdate.style.display = "block";
+			}
+
+			window.onclick = function(event) {
+			if (event.target == modalUpdate) {
+			modalUpdate.style.display = "none";
 			}
 		}
 	</script>

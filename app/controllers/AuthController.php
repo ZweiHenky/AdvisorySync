@@ -8,7 +8,7 @@ class AuthController {
     public function login() {
         if (isset($_SESSION['usuario'])) {
             if ($_SESSION['usuario']['is_admin'] == false) {
-                header('location: http://localhost/advisorysync/dynamic/home');
+                header('location: http://localhost/advisorysync/static/home');
             }else{
                 header('location: http://localhost/advisorysync/admin/home');
             }

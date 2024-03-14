@@ -6,6 +6,7 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../app/utils/dinamyc/tailwind.config.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.3/dist/full.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -37,8 +38,7 @@
                 </li>
                 <li class='flex gap-2 items-center'>
                     <img class='w-[20px] h-auto' src="../app/assets/icons/logOut.svg" alt="" >
-                    
-                    <a href="/advisorysync/auth/logOut"><p>Cerrar Sesion</p></a>
+                    <p>Cerrar Sesion</p>
                 </li>
             </ul>
 

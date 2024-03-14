@@ -25,43 +25,63 @@
 			</li>
 			<li id='side-users' class=<?php echo $methodName == 'users' ? 'active' : ''; ?>>
 				<a href="users" >
-					<i class='bx bxs-shopping-bag-alt' ></i>
+					<i class='bx bxs-user' ></i>
 					<span class="text" data-two>Usuarios</span>
 				</a>
 			</li>
 			<li id='side-advisories' class=<?php echo $methodName == 'advisories' ? 'active' : ''; ?>>
 				<a href="advisories">
-					<i class='bx bxs-doughnut-chart' ></i>
+					<i class='bx bxs-camera' ></i>
 					<span class="text" data-three>Asesorias</span>
 				</a>
 			</li>
 			<li id='side-categories' class=<?php echo $methodName == 'categories' ? 'active' : ''; ?>>
 				<a href="categories">
-					<i class='bx bxs-message-dots' ></i>
+					<i class='bx bxs-category-alt' ></i>
 					<span class="text" data-four>Categorias</span>
 				</a>
 			</li>
 			<li>
 				<a href="subCategories">
-					<i class='bx bxs-message-dots' ></i>
+					<i class='bx bxs-category' ></i>
 					<span class="text" data-four>Sub Categorias</span>
 				</a>
 			</li>
 			<li id='side-reviews' class=<?php echo $methodName == 'reviews' ? 'active' : ''; ?>>
 				<a href="reviews">
-					<i class='bx bxs-bar-chart-alt-2' ></i>
+					<i class='bx bxs-message-dots' ></i>
 					
 					<span class="text" data-four>Reseñas</span>
 				</a>
 			</li>
+			<li id='side-messagesUser' class=<?php echo $methodName == 'messagesUser' ? 'active' : ''; ?>>
+				<a href="messagesUser" >
+					<i class='bx bxs-message-rounded-dots' ></i>
+					<span class="text" data-five>Mensajes</span>
+				</a>
+			</li>
+			<li id='side-userRoom' class=<?php echo $methodName == 'userRoom' ? 'active' : ''; ?>>
+				<a href="userRoom" >
+					<i class='bx bxs-user-account' ></i>
+					<span class="text" data-six>Sala Usuario</span>
+				</a>
+			</li>
+			<li id='side-notification' class=<?php echo $methodName == 'notification' ? 'active' : ''; ?>>
+				<a href="notification" >
+					<i class='bx bxs-notification' ></i>
+					<span class="text" data-seven>Notificaciones</span>
+				</a>
+			</li>
+
 		</ul>
 		<ul class="side-menu">
 			<li>
 				<a href="/advisorysync/auth/logOut" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-					<span class="text" data-logOut>Logout</span>
+					<i class='bx bxs-log-out' ></i>
+					<span class="text" data-logOut>Cerrar sesion</span>
 				</a>
 			</li>
+			
 		</ul>
 	</section>
 	<!-- SIDEBAR -->

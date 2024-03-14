@@ -5,6 +5,9 @@
     require 'app/models/Category.php';
     require 'app/models/SubCategory.php';
     require 'app/models/Review.php';
+    require 'app/models/messageUser.php';
+    require 'app/models/UserRoom.php';
+    require 'app/models/Notification.php';
     
     class AdminController{
         
@@ -14,6 +17,9 @@
         private $category;
         private $subCategory;
         private $review;
+        private $messageUser;
+        private $userRoom;
+        private $notification;
 
         public function __construct() {
             $this->admin = new Admin(Connection::conn());
@@ -22,6 +28,9 @@
             $this->category = new Category(Connection::conn());
             $this->subCategory = new SubCategory(Connection::conn());
             $this->review = new Review(Connection::conn());
+            $this->messageUser = new MessageUser(Connection::conn());
+            $this->userRoom = new UserRoom(Connection::conn());
+            $this->notification = new Notification(Connection::conn());
         }
         
         public function pagination($page, $total_resultados) {
@@ -408,6 +417,13 @@
 
             $subCategories = $this->subCategory->getAllSubCategories($empezar_desde, $resultados_por_pagina);
 
+            if (isset($_GET['id_sub'])) {
+
+                $id = $_GET['id_sub'];
+
+                $_SESSION['subCategoryUpdate'] = $this->subCategory->getSubCategory($id);
+            }
+
             if (isset($_POST['btnSearch'])) {
                 if ($_POST['search'] == '') {
                     $subCategories = $this->subCategory->getAllSubCategories($empezar_desde, $resultados_por_pagina);
@@ -428,18 +444,28 @@
 
             }
 
-            
-
             if(isset($_POST['create'])){
                 $nombre = $_POST['nombre'];
-                $id = $_POST['id_categoria'];
+                $id_categoria = $_POST['id_categoria'];
 
                 try {
-                    $_SESSION['crear'] = $this->subCategory->createSubCategory($nombre, $id);
+                    $_SESSION['crear'] = $this->subCategory->createSubCategory($nombre, $id_categoria);
                 } catch (\Throwable $th) {
                     $_SESSION['crear'] = false;
                 }
             }
+
+            if(isset($_POST['update'])){
+                $nombre = $_POST['nombre'];
+                $id_sub = $_SESSION['subCategoryUpdate'][0]['id_sub'];
+            
+                try {
+                    $_SESSION['update'] = $this->subCategory->updateSubCategory($nombre, $id_sub);
+                } catch (\Throwable $th) {
+                    $_SESSION['update'] = false;
+                }
+            }
+            
 
             // Lógica para la página de inicio estática
             include 'app/views/admin/subCategories.php';
@@ -502,8 +528,37 @@
                 }
                 
                 unset($_SESSION['crear']);
+
+                if (isset($_SESSION['update'])) {
+                    if ($_SESSION['update'] == true) {
+                        echo "
+                            <script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Actualizacion',
+                                text: 'Se actualizo con exito la Subcategoria',
+                            }).then(function() {
+                                window.location.href = 'http://localhost/advisorySync/admin/subCategories';
+                            });
+                            </script> 
+                            ";
+                    }else{
+                        echo "
+                        <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Creacion',
+                            text: 'No se pudo actualizar',
+                        }).then(function() {
+                            window.location.href = 'http://localhost/advisorySync/admin/subCategories';
+                        });
+                        </script> 
+                        ";
+                    }
+                    
+                    unset($_SESSION['update']);
+                }
             }
-            
         }
 
 
@@ -516,7 +571,6 @@
                 }
             }
 
-           
             $page = isset($_GET['pagina']) ? $_GET['pagina'] : null;
 
             $total_resultados = $this->admin->allReviews();
@@ -530,8 +584,124 @@
 
             $reviews = $this->review->getAllReviews($empezar_desde, $resultados_por_pagina);
 
+            if (isset($_POST['btnSearch'])) {
+                if ($_POST['search'] == '') {
+                    $reviews = $this->review->getAllReviews($empezar_desde, $resultados_por_pagina);
+                }else{
+                    $reviews = $this->review->getReview($_POST['search']);
+                }
+            }
+
+
             include 'app/views/admin/reviews.php';
         }
+
+        public function messagesUser() {
+
+            if (!$_SESSION['usuario'] ){
+                header('location: http://localhost/advisorysync/auth/login');
+            }else{
+                if ($_SESSION['usuario']['is_admin'] == false) {
+                    header('location: http://localhost/advisorysync/static/home');
+                }
+            }
+
+            $page = isset($_GET['pagina']) ? $_GET['pagina'] : null;
+
+            $total_resultados = $this->admin->allMessages();
+
+            $pagination = $this->pagination($page, $total_resultados);
+
+            $resultados_por_pagina = $pagination[0];
+            $empezar_desde = $pagination[1];
+            $total_paginas = $pagination[2];
+            $pagina_actual = $pagination[3];
+
+            $messages = $this->messageUser->getAllMessagesUser($empezar_desde, $resultados_por_pagina);
+
+            if (isset($_POST['btnSearch'])) {
+                if ($_POST['search'] == '') {
+                    $messages = $this->messageUser->getAllMessagesUser($empezar_desde, $resultados_por_pagina);
+                }else{
+                    $messages = $this->messageUser->getMessage($_POST['search']);
+                }
+            }
+
+            include 'app/views/admin/messagesUser.php';
+
+        }
+
+        public function UserRoom() {
+
+            if (!$_SESSION['usuario'] ){
+                header('location: http://localhost/advisorysync/auth/login');
+            }else{
+                if ($_SESSION['usuario']['is_admin'] == false) {
+                    header('location: http://localhost/advisorysync/static/home');
+                }
+            }
+
+            $page = isset($_GET['pagina']) ? $_GET['pagina'] : null;
+
+            $total_resultados = $this->admin->allUserRoom();
+
+            $pagination = $this->pagination($page, $total_resultados);
+
+            $resultados_por_pagina = $pagination[0];
+            $empezar_desde = $pagination[1];
+            $total_paginas = $pagination[2];
+            $pagina_actual = $pagination[3];
+
+            $messages = $this->userRoom->getAllUserRoom($empezar_desde, $resultados_por_pagina);
+
+            if (isset($_POST['btnSearch'])) {
+                if ($_POST['search'] == '') {
+                    $messages = $this->userRoom->getAllUserRoom($empezar_desde, $resultados_por_pagina);
+                }else{
+                    $messages = $this->userRoom->getUserRoom($_POST['search']);
+                }
+            }
+
+            include 'app/views/admin/userRooms.php';
+
+        }
+
+        public function Notification() {
+
+            if (!$_SESSION['usuario'] ){
+                header('location: http://localhost/advisorysync/auth/login');
+            }else{
+                if ($_SESSION['usuario']['is_admin'] == false) {
+                    header('location: http://localhost/advisorysync/static/home');
+                }
+            }
+
+            $page = isset($_GET['pagina']) ? $_GET['pagina'] : null;
+
+            $total_resultados = $this->admin->allNotification();
+
+            $pagination = $this->pagination($page, $total_resultados);
+
+            $resultados_por_pagina = $pagination[0];
+            $empezar_desde = $pagination[1];
+            $total_paginas = $pagination[2];
+            $pagina_actual = $pagination[3];
+
+            $messages = $this->notification->getAllNotifications($empezar_desde, $resultados_por_pagina);
+
+            if (isset($_POST['btnSearch'])) {
+                if ($_POST['search'] == '') {
+                    $messages = $this->notification->getAllNotifications($empezar_desde, $resultados_por_pagina);
+                }else{
+                    $messages = $this->notification->getNotification($_POST['search']);
+                }
+            }
+
+            include 'app/views/admin/notifications.php';
+
+        }
+
+
 
         // Otros métodos para páginas estáticas según sea necesario
     }
