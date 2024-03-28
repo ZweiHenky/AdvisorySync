@@ -1,0 +1,63 @@
+
+
+/* Estilos del modal */
+.create-modal {
+    display: none; /* Por defecto, ocultar el modal */
+    position: fixed; /* Fijar la posición del modal */
+    z-index: 2000; /* Ubicar el modal por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    overflow: auto; /* Permitir desplazamiento si el contenido es demasiado grande */
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centrar verticalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; /* Ancho del contenido */
+    border-radius: 10px;
+}
+
+/* Botón de cierre del modal */
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo para el botón de enviar dentro del formulario */
+.modal-content button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para los campos de entrada en el formulario */
+.modal-content input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}

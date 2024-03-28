@@ -23,10 +23,12 @@
                     <p>Perfil</p>
                 </li>
             </a>
-            <li class='flex gap-2 items-center'>
-                <img class='w-[20px] h-auto' src="../app/assets/icons/setting.svg" alt="" >
-                <p>Configuracion</p>
-            </li>
+            <a href="settings">
+                <li class='flex gap-2 items-center'>
+                    <img class='w-[20px] h-auto' src="../app/assets/icons/setting.svg" alt="" >
+                    <p>Configuracion</p>
+                </li>
+            </a>
             <li class='flex gap-2 items-center'>
                 <img class='w-[20px] h-auto' src="../app/assets/icons/logOut.svg" alt="" >
                 <p>Cerrar Sesion</p>
@@ -35,6 +37,46 @@
 
     </nav>
 
-        <button class='mt-12 bg-primary text-white w-full p-2 rounded'>Crear Nueva Asesoria</button>
+        <button id='openCreateModal' class='mt-12 bg-primary text-white w-full p-2 rounded'>Crear Nueva Asesoria</button>
 
     </aside>
+
+
+    <div id="modal" class="create-modal" >
+        <div class="modal-content *:mt-4">
+            <span class="closeCreate">&times;</span>
+            <h2 class='text-center text-2xl'>Crear Publicacion</h2>
+            <form class='*:mt-4' action="/advisorysync/admin/subCategories" enctype="multipart/form-data" method='POST'>
+                <input type="text" name="" id="" placeholder='Titulo'>
+                <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+                <button type="submit">Crear</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+		// Obtener el modal
+		var modalCreate = document.getElementById("modal");
+		// Obtener el botón que abre el modal
+		var btnCreate = document.getElementById("openCreateModal");
+		// Obtener el elemento <span> que cierra el modal
+		var spanCreate = document.querySelector(".closeCreate");
+
+        // Cuando el usuario haga clic en el botón, abrir el modal
+		btnCreate.addEventListener('click', ()=>{
+			modalCreate.style.display = "block";
+		})
+		// Cuando el usuario haga clic en <span> (x), cerrar el modal
+		spanCreate.onclick = function() {
+			modalCreate.style.display = "none";
+		}
+
+        // Cuando el usuario haga clic fuera del modal, cerrarlo
+		window.onclick = function(event) {
+			if (event.target == modalCreate) {
+				modalCreate.style.display = "none";
+			}
+		}
+    </script>
+
+
