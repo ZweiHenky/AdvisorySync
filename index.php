@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+echo 'hola';
 
 // Cargar archivos necesarios
 require_once 'app/controllers/StaticController.php';

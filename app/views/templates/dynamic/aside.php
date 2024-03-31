@@ -29,10 +29,12 @@
                     <p>Configuracion</p>
                 </li>
             </a>
-            <li class='flex gap-2 items-center'>
-                <img class='w-[20px] h-auto' src="../app/assets/icons/logOut.svg" alt="" >
-                <p>Cerrar Sesion</p>
-            </li>
+            <a href="/advisorysync/auth/logOut">
+                <li class='flex gap-2 items-center'>
+                    <img class='w-[20px] h-auto' src="../app/assets/icons/logOut.svg" alt="" >
+                    <p>Cerrar Sesion</p>
+                </li>
+			</a>
         </ul>
 
     </nav>

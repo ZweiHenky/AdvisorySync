@@ -1,6 +1,24 @@
 
 <?php
 
+require_once 'app/assets/stripe-php/init.php';
+
+$stripe = new \Stripe\StripeClient([
+    'api_key' => 'sk_test_51OYJJaFjNS97mgyJcoFOfkVpNPryQWtDqFZgiiqyUH95ucET8e2Hc6lm3NfSxsPIV9PgfJ3ZYbH67OKla9bk2FiT001gRttnq0'
+]);
+  
+
+$account = $stripe->accounts->create([
+    'type' => 'express',
+    'country' => 'MX',
+    'email' => 'ejemplo@example.com',
+    'capabilities' => [
+      'card_payments' => ['requested' => true],
+      'transfers' => ['requested' => true],
+    ],
+  ]);
+
+
 
 class DynamicController {
     
@@ -16,7 +34,11 @@ class DynamicController {
         // 3.- Aceptar publicacion 
 
         if (isset($_POST['aceptar'])) {
-            
+            if ($_SESSION['usuario']['id_stripe'] != 'null') {
+                // echo 'asesor';
+            }else{
+                // echo 'estudiante';
+            }
         }
 
         if (isset($_POST['buscar'])) {
@@ -57,6 +79,10 @@ class DynamicController {
         }
 
         include 'app/views/dynamic/settings.php';
+    }
+
+    public function stream() {
+        include 'app/views/dynamic/stream.php';
     }
 
     // Otros métodos para páginas estáticas según sea necesario
