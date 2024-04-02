@@ -66,17 +66,21 @@
     <div id="publicaciones" class=" mt-4">
         <div class="border border-gray-200 p-4 rounded-md mb-4">
             <h3 class="text-lg font-semibold mb-2">Título de la Publicación</h3>
-            <p class="text-sm text-gray-600 mb-2">Status: Activa</p>
+            <p class="text-sm text-gray-600 mb-2">Status: Confirmacion</p>
             <p class="text-sm text-gray-600 mb-2">Fecha: 17 de marzo de 2024</p>
             <p class="text-sm text-gray-600 mb-2">Asesor: Nombre del Asesor</p>
             <p class="text-sm text-gray-600 mb-2">Categoria: Nombre de la categoria</p>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded-md">Acción</button>
+
+
+            <form action="" method="post">
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md" name='pagar'>Acción</button>
+            </form>
         </div>
 
         <!-- Publicación 2 -->
         <div class="border border-gray-200 p-4 rounded-md mb-4">
             <h3 class="text-lg font-semibold mb-2">Título de la Publicación</h3>
-            <p class="text-sm text-gray-600 mb-2">Status: Activa</p>
+            <p class="text-sm text-gray-600 mb-2">Status: Confirmacion</p>
             <p class="text-sm text-gray-600 mb-2">Fecha: 16 de marzo de 2024</p>
             <p class="text-sm text-gray-600 mb-2">Asesor: Nombre del Asesor</p>
             <p class="text-sm text-gray-600 mb-2">Categoria: Nombre de la categoria</p>

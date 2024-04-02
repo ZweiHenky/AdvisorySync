@@ -1,13 +1,11 @@
 <?php
 session_start();
 
-echo 'hola';
 
-// Cargar archivos necesarios
-require_once 'app/controllers/StaticController.php';
-require_once 'app/controllers/DynamicController.php';
-require_once 'app/controllers/AdminController.php';
-require_once 'app/controllers/AuthController.php';
+// require_once './app/controllers/StaticController.php';
+// require_once './app/controllers/DynamicController.php';
+// require_once './app/controllers/AdminController.php';
+// require_once './app/controllers/AuthController.php';
 
 // Obtener la URL
 $url = isset($_GET['url']) ? $_GET['url'] : 'home';
@@ -22,6 +20,7 @@ $methodName = isset($urlParts[1]) ? $urlParts[1] : 'index';
 
 // Ruta al controlador
 $controllerPath = 'app/controllers/' . $controllerName . '.php';
+
 
 // Verificar si el controlador existe
 if (file_exists($controllerPath)) {
