@@ -5,7 +5,7 @@
     require 'app/models/Category.php';
     require 'app/models/SubCategory.php';
     require 'app/models/Review.php';
-    require 'app/models/messageUser.php';
+    require 'app/models/MessageUser.php';
     require 'app/models/UserRoom.php';
     require 'app/models/Notification.php';
     
