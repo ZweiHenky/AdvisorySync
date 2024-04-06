@@ -42,8 +42,9 @@
             <form class='*:p-4' action="home" method="post">
                 <p class='absolute right-0 top-0 p-4 text-xl'>usuario</p>
                 <h3 class='text-xl border-b'>Titulo</h3>
-                <div class='mt-4'>
+                <div class='mt-4 flex justify-between'>
                     <span class='bg-purple-100 text-purple-800 text-xs font-medium p-2 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400'>Categoria</span>
+                    <img id="fav" class='w-[30px] h-auto' src="../app/assets/icons/heart.svg" alt="">
                 </div>
                 <div class='mt-4'>
                     <div class="h-32 overflow-y-auto">
@@ -69,5 +70,6 @@
     </main>
 
     <script src='../app/utils/dynamic/aside.js'></script>
+    <script src='../app/utils/dynamic/favorite.js'></script>
 </body>
 </html>
