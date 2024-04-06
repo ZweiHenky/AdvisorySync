@@ -7,12 +7,6 @@ class DynamicController {
     
     public function home() {
 
-        require_once 'app/assets/stripe-php/init.php';
-
-        $stripe = new \Stripe\StripeClient([
-            'api_key' => 'sk_test_51P0IeWP9Ot3ecyAmM9aCRnphdEMkJJoLtlHaomOPghHWr8Pt35fH74cCqFN5jYPXYFXNmUphODU0m8tHzVorVm0s00lMeZ1qwy'
-        ]);
-
         // Lógica para la página de inicio del usuario
 
         // 1.- buscar todas las publicaciones con paginacion
@@ -23,39 +17,9 @@ class DynamicController {
 
         // 3.- Aceptar publicacion 
 
-        // var_dump($_SESSION['usuario']);
+        var_dump($_SESSION['usuario']);
         // echo $_SESSION['usuario']['id_stripe'];
 
-        if (isset($_POST['aceptar'])) {
-            if (isset($_SESSION['usuario']['id_stripe']) ) {
-                // echo 'asesor';
-
-            }else{
-                // echo 'estudiante';
-
-                // $account = $stripe->accounts->create([
-                //     'type' => 'express',
-                //     'country' => 'MX',
-                //     'email' => 'ejemplo3@example.com',
-                //     'capabilities' => [
-                //     'card_payments' => ['requested' => true],
-                //     'transfers' => ['requested' => true],
-                //     ],
-                // ]);
-
-                // $_SESSION['usuario']['id_stripe'] = $account['id'];
-
-                // $url =  $stripe->accountLinks->create([
-                //     'account' => $_SESSION['usuario']['id_stripe'],
-                //     'refresh_url' => 'http://localhost/advisorysync/dynamic/refresh',
-                //     'return_url' => 'http://localhost/advisorysync/dynamic/return',
-                //     'type' => 'account_onboarding',
-                // ]);
-
-                // header("location: {$url['url']}");
-
-            }
-        }
 
         if (isset($_POST['buscar'])) {
             
