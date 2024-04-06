@@ -72,6 +72,10 @@ a{
     opacity: 0.4;
 }
 
+#error-nombre, #error-apellidos, #error-correo, #error-password{
+    display: none;
+}
+
 @media (max-width: 1000px) {
     .img{
         display: none;

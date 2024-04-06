@@ -11,16 +11,27 @@
         <div>
             <img src="../app/assets/icons/logo.png"  alt="" srcset="">
         </div>
-        <form class="login-form">
+        <form class="login-form" id="login" action="/advisorysync/auth/register" enctype="multipart/form-data" method='POST'>
             
             <h2>Registrate</h2>
-
-            <input type="email" id="email" name="email" required placeholder="Correo">
-            <input type="text" id="nombre" name="nombre" required placeholder="Nombre">
-            <input type="text" id="apellidos" name="apellidos" required placeholder="Apellidos">
-            <input type="password" id="password" name="password" required placeholder="Contraseña">
             
-            <button type="submit">Login</button>
+            <input type="text" id="nombre" name="nombre" value="<?php echo isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : ''; ?>" required placeholder="Nombre" >
+            <input type="text" id="apellidos" name="apellidos" value="<?php echo isset($_POST['nombre']) ? htmlspecialchars($_POST['apellidos']) : ''; ?>"required placeholder="Apellidos">
+            <input type="text" id="correo" name="correo" value="<?php echo isset($_POST['nombre']) ? htmlspecialchars($_POST['correo']) : ''; ?>" required placeholder="Correo">
+            <input type="password" id="password" name="password" required placeholder="Contraseña">
+
+            <?php
+                // Mostrar errores si existen
+                if (!empty($errores)) {
+                    echo "<div>";
+                    foreach ($errores as $error) {
+                        echo "<p>$error</p>";
+                    }
+                    echo "</div>";
+                }
+            ?>
+
+            <button type="submit" name='create'>Registrarse</button>
         </form>
 
         <div class='texto'>

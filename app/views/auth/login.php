@@ -57,9 +57,9 @@
             let errors = {}
 
             if (email.trim() === '') {
-                errors.email ='campo vacio'
+                errors.email ='Campo vacio'
             }else if(!regexEmail.test(email)){
-                errors.email = 'correo invalido'
+                errors.email = 'Correo invalido'
             }
 
             // if (password.trim() === '') {
