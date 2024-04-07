@@ -1,9 +1,15 @@
 
 <?php
+require 'app/models/Favorites.php'; 
 
 
 
 class DynamicController {
+    private $favorites;
+
+    public function __construct() {
+        $this->favorites = new Favorites(Connection::conn());
+    }
     
     public function home() {
 
@@ -68,8 +74,9 @@ class DynamicController {
 
         // 3.- Mostrar las reseñas en la seccion de reseñas con paginacion
 
-        // 4.- Mostrar las publicaciones guardadas del usuario en la seccion de guardados
-
+       $favorite = $this->favorites->getFavorites($_SESSION['usuario']['id_usuario']);
+       //var_dump($favorite);
+    
 
         include 'app/views/dynamic/profile.php';
     }
