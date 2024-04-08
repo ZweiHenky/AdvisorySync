@@ -32,30 +32,49 @@
     </header>
 
     <main>
-        <div class="flex flex-col items-center justify-center space-y-4 p-4  ">
-            <div class="w-24 h-24 rounded-full overflow-hidden">
-                <img src="https://picsum.photos/200/300" alt="Imagen de perfil" class="w-full h-full object-cover" />
+            <div class="flex flex-col items-center justify-center space-y-4 p-4  ">
+                <div class="w-24 h-24 rounded-full overflow-hidden">
+                    <img src="https://picsum.photos/200/300" alt="Imagen de perfil" class="w-full h-full object-cover" />
+                </div>
+                <h2 class="text-lg font-semibold"><?php echo $usuario['nombre'] . ' ' . $usuario['apellidos']; ?></h2>
+                <div class="flex items-center">
+                        <p class="text-sm text-gray-600"><?php if ($usuario['id_stripe'] == '') {
+                                                                    echo "<p>Alumno</p>";
+                                                                }else{
+                                                                    echo "<p>Asesesor</p>";
+                                                                } ?>
+                        </p>
+                    </div>
+                <div class="flex items-center space-x-2">
+                    <div class="flex items-center">
+                        <p class="text-xs text-gray-600">5 asesorías dadas</p> <!-- O "5 asesorías recibidas" -->
+                    </div>
+                    <div class="flex items-center">
+                        <p class="text-xs text-gray-600">|</p>
+                    </div>
+                    <div class="flex items-center">
+                        <?php if ($userReviews): ?>
+                            <p class="text-xs text-gray-600">Valoración promedio: <?php echo number_format($valoracionPromedio, 2); ?></p>
+                        <?php else: ?>
+                            <p class="text-xs text-gray-600">No tiene</p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <?php
+                        // ponemos las estrellas según la valoración promedio
+                        $valoracionPromedio = round($valoracionPromedio); // round() redonde al entero mas cercano a partir de .5
+                        // estrellas llenas
+                        for ($i = 1; $i <= $valoracionPromedio; $i++) {
+                            echo '<span class="text-xs text-yellow-400">&#9733;</span>'; 
+                        }
+                        // estrellas vacías restantes
+                        for ($i = $valoracionPromedio + 1; $i <= 5; $i++) {
+                            echo '<span class="text-xs text-gray-400">&#9734;</span>';
+                        }
+                        ?>
+                    </div>
+                </div>
             </div>
-            <h2 class="text-lg font-semibold">Nombre Completo</h2>
-            <div class="flex items-center space-x-2">
-                <div class="flex items-center">
-                    <p class="text-sm text-gray-600">Estudiante</p> <!-- O "Asesor" -->
-                </div>
-                <div class="flex items-center">
-                    <p class="text-xs text-gray-600">|</p>
-                </div>
-                <div class="flex items-center">
-                    <p class="text-xs text-gray-600">5 asesorías dadas</p> <!-- O "5 asesorías recibidas" -->
-                </div>
-                <div class="flex items-center space-x-1">
-                    <span class="text-xs text-yellow-400">&#9733;</span> <!-- Estrella rellena -->
-                    <span class="text-xs text-yellow-400">&#9733;</span> <!-- Estrella rellena -->
-                    <span class="text-xs text-yellow-400">&#9733;</span> <!-- Estrella rellena -->
-                    <span class="text-xs text-yellow-400">&#9733;</span> <!-- Estrella rellena -->
-                    <span class="text-xs text-gray-400">&#9734;</span> <!-- Estrella vacía -->
-                </div>
-            </div>
-        </div>
         </div>
 
         <!-- Sección de opciones -->
@@ -66,49 +85,63 @@
         </div>
 
         <!-- publicaciones-->
-        <div id="publicaciones" class=" mt-4">
-            <div class="border border-gray-200 p-4 rounded-md mb-4">
-                <h3 class="text-lg font-semibold mb-2">Título de la Publicación</h3>
-                <p class="text-sm text-gray-600 mb-2">Status: Confirmacion</p>
-                <p class="text-sm text-gray-600 mb-2">Fecha: 17 de marzo de 2024</p>
-                <p class="text-sm text-gray-600 mb-2">Asesor: Nombre del Asesor</p>
-                <p class="text-sm text-gray-600 mb-2">Categoria: Nombre de la categoria</p>
-    
-
-            <form action="" method="post">
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-md" name='pagar'>Acción</button>
-                </form>
+        <div id="publicaciones" class="mt-4">
+            <?php if (!empty($publicaciones)) : ?>
+                <?php foreach ($publicaciones as $advisory) : ?>
+                    <div class="border border-gray-200 p-4 rounded-md mb-4">
+                        <h3 class="text-lg font-semibold mb-2">Título de la Publicación</h3>
+                        <p class="text-lg font-semibold mb-2">" <?php echo $advisory['titulo']; ?> "</p>
+                        <!-- Imprimir los datos del asesor -->
+                        <?php if (isset($advisory['nombre_asesor']) && isset($advisory['apellidos_asesor'])) : ?>
+                            <p>Asesor: <?php echo $advisory['nombre_asesor'] . ' ' . $advisory['apellidos_asesor']; ?></p>
+                        <?php else : ?>
+                            <p>No hay datos del asesor disponibles</p>
+                        <?php endif; ?>
+                        <!-- Resto del código -->
+                        <?php if (isset($userNotifications['estatus'])) : ?>
+                            <p class="text-sm text-gray-600 mb-2">Estatus: <?php echo $userNotifications['estatus']; ?></p>
+                        <?php else : ?>
+                            <p class="text-sm text-gray-600 mb-2">No hay datos de estatus disponibles</p>
+                        <?php endif; ?>
+                        <!-- strtotime() analiza esta cadena y devuelve la cantidad de segundos transcurridos -->
+                        <!-- date() formatea este valor de segundos en el formato deseado, que es "Año-Mes-Día".-->
+                        <p class="text-sm text-gray-600 mb-2">Fecha: <?php echo date('Y-m-d', strtotime($advisory['fecha'])); ?></p> 
+                        <p class="text-sm text-gray-600 mb-2">Hora: <?php echo date('H:i:s', strtotime($advisory['fecha'])); ?></p>
+                        <p class="text-sm text-gray-600 mb-2">Categoria: <?php echo $advisory['categoria']; ?></p>
+                        <?php echo "
+                        <form action='/advisorysync/dynamic/profile' method='post'>
+                        <input type='hidden' name='id_publi' value={$advisory['id_publi']}>
+                        <button class='bg-red-500 text-white px-4 py-2 rounded-md' type='submit' name='delete'>Eliminar</button>
+                        </form>";
+                        ?>
+                    </div>
+                <?php endforeach; ?>
+                <?php
+                // Incluir el archivo de paginación
+                include 'app/views/templates/admin/pagination.php';
+            ?>
+            <?php else : ?>
+                <p>No hay publicaciones disponibles.</p>
+            <?php endif; ?>
         </div>
 
-            <!-- Publicación 2 -->
-            <div class="border border-gray-200 p-4 rounded-md mb-4">
-                <h3 class="text-lg font-semibold mb-2">Título de la Publicación</h3>
-                <p class="text-sm text-gray-600 mb-2">Status: Confirmacion</p>
-                <p class="text-sm text-gray-600 mb-2">Fecha: 16 de marzo de 2024</p>
-                <p class="text-sm text-gray-600 mb-2">Asesor: Nombre del Asesor</p>
-                <p class="text-sm text-gray-600 mb-2">Categoria: Nombre de la categoria</p>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-md">Acción</button>
-            </div>
-        </div>
-
+        <!-- reseñas -->
         <div id="reseñas" class="hidden mt-4">
-            <!-- Reseña 1 -->
-            <div class="bg-white rounded-md shadow-md overflow-hidden">
-                <div class="p-6">
-                    <p class="text-sm text-gray-600 mb-2">Usuario: Nombre de Usuario</p>
-                    <p class="text-sm text-gray-600 mb-2">Fecha: 17 de marzo de 2024</p>
-                    <p class="text-lg mb-4">Comentario de la Reseña</p>
+        <?php if (!empty($userReviews)) : ?>
+            <?php foreach ($userReviews as $userReview): ?>
+                <div class="bg-white rounded-md shadow-md overflow-hidden mb-2">
+                    <div class="p-6">
+                    <!-- <p class="text-sm text-gray-600 mb-2">Usuario: <?php echo $userReview['nombre']; ?></p>-->
+                        <p class="text-sm text-gray-600 mb-2">Fecha: <?php echo date('Y-m-d', strtotime($userReview['fecha'])); ?></p>
+                        <p class="text-sm text-gray-600 mb-2">Hora: <?php echo date('H:i:s', strtotime($userReview['fecha'])); ?></p>
+                        <p class="text-lg mb-2">" <?php echo $userReview['comentario']; ?> "</p>
+                        <p class="text-sm text-gray-600 mb-2">Valoración: <?php echo $userReview['valoracion']; ?></p> 
+                    </div>
                 </div>
-            </div>
-
-            <!-- Reseña 2 -->
-            <div class="bg-white rounded-md shadow-md overflow-hidden">
-                <div class="p-6">
-                    <p class="text-sm text-gray-600 mb-2">Usuario: Nombre de Usuario</p>
-                    <p class="text-sm text-gray-600 mb-2">Fecha: 16 de marzo de 2024</p>
-                    <p class="text-lg mb-4">Comentario de la Reseña</p>
-                </div>
-            </div>
+            <?php endforeach; ?>
+            <?php else: ?>
+                <p>No hay reseñas disponibles.</p>
+            <?php endif; ?>
         </div>
 
         <!-- favoritos -->

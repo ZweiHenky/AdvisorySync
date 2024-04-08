@@ -38,6 +38,13 @@ class Notification {
         return $st->execute([$id]);
     } */
 
+    public function getUserNotifications($userId){
+        $st = $this->conn->prepare(
+            "SELECT * FROM notificaciones WHERE id_usuario = ?");
+        $st->execute([$userId]);
+        return $st->fetch(PDO::FETCH_ASSOC);
+    }
+
 }
 
 ?>

@@ -22,6 +22,13 @@ class Review {
         LIMIT $empezar_desde, $resultados_por_pagina");
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getUserReviews($userId) {
+        $st = $this->conn->prepare(
+            "SELECT valoracion, fecha, comentario FROM resenas WHERE id_usuario = ?");
+        $st->execute([$userId]);
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>
