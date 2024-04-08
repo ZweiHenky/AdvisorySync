@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../app/utils/dynamic/tailwind.config.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.3/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .tab-selected {
             border-color: #1a73e8;
@@ -36,24 +37,67 @@
             <div class="w-24 h-24 rounded-full overflow-hidden">
                 <img src="https://picsum.photos/200/300" alt="Imagen de perfil" class="w-full h-full object-cover" />
             </div>
-            <h2 class="text-lg font-semibold">Nombre Completo</h2>
+            <h2 class="text-lg font-semibold"><?php echo $user['nombre'] . ' ' . $user['apellidos'] ?></h2>
             <div class="flex items-center space-x-2">
                 <div class="flex items-center">
-                    <p class="text-sm text-gray-600">Estudiante</p> <!-- O "Asesor" -->
+                    <p class="text-sm text-gray-600"><?php echo $user == null ? 'Estudiante' : 'Asesor' ?></p> <!-- O "Asesor" -->
                 </div>
                 <div class="flex items-center">
                     <p class="text-xs text-gray-600">|</p>
                 </div>
-                <div class="flex items-center">
-                    <p class="text-xs text-gray-600">5 asesorías dadas</p> <!-- O "5 asesorías recibidas" -->
+
+                <div class="flex items-center justify-center space-x-1">
+                    <?php
+                        // Ejemplo de calificación
+                        $calificacion = $review['rating'] == null ? 0 : $review['rating'];
+
+                        // Obtener el número de estrellas llenas
+                        $estrellasLlenas = floor($calificacion);
+                        
+                        // Calcular la parte decimal
+                        $decimal = $calificacion - $estrellasLlenas;
+
+                        // Calcular el número de estrellas parciales
+                        if ($decimal >= 0.75) {
+                            $estrellaParcial = 1;
+                        } elseif ($decimal >= 0.25) {
+                            $estrellaParcial = 0.5;
+                        } else {
+                            $estrellaParcial = 0;
+                        }
+
+                        // Calcular el número de estrellas vacías
+                        $estrellasVacias = 5 - $estrellasLlenas - ($estrellaParcial > 0 ? 1 : 0);
+
+                        // Generar estrellas llenas
+                        for ($i = 0; $i < $estrellasLlenas; $i++) {
+                            echo '<svg class="w-6 h-6 fill-current text-yellow-400" viewBox="0 0 24 24">
+                                    <path d="M12 2l2.812 6.844L22 10.75l-5.125 4.406.812 7.969L12 19.75l-6.688 3.375.813-7.969L2 10.75l7.188-2.906L12 2z"/>
+                                </svg>';
+                        }
+
+                        // Generar estrella parcial con gradiente
+                        if ($estrellaParcial > 0) {
+                            echo '<svg class="w-6 h-6 text-yellow-400" viewBox="0 0 24 24">
+                                    <defs>
+                                        <linearGradient id="gradiente-estrella" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="' . (100 - ($estrellaParcial * 100)) . '%" style="stop-color:#FFD700;stop-opacity:1" />
+                                            <stop offset="' . (100 - ($estrellaParcial * 100)) . '%" style="stop-color:#ffffff;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path fill="url(#gradiente-estrella)" d="M12 2l2.812 6.844L22 10.75l-5.125 4.406.812 7.969L12 19.75l-6.688 3.375.813-7.969L2 10.75l7.188-2.906L12 2z"/>
+                                </svg>';
+                        }
+
+                        // Generar estrellas vacías
+                        for ($i = 0; $i < $estrellasVacias; $i++) {
+                            echo '<svg class="w-6 h-6 fill-current text-gray-400" viewBox="0 0 24 24">
+                                    <path d="M12 2l2.812 6.844L22 10.75l-5.125 4.406.812 7.969L12 19.75l-6.688 3.375.813-7.969L2 10.75l7.188-2.906L12 2z"/>
+                                </svg>';
+                        }
+                    ?>
                 </div>
-                <div class="flex items-center space-x-1">
-                    <span class="text-xs text-yellow-400">&#9733;</span> <!-- Estrella rellena -->
-                    <span class="text-xs text-yellow-400">&#9733;</span> <!-- Estrella rellena -->
-                    <span class="text-xs text-yellow-400">&#9733;</span> <!-- Estrella rellena -->
-                    <span class="text-xs text-yellow-400">&#9733;</span> <!-- Estrella rellena -->
-                    <span class="text-xs text-gray-400">&#9734;</span> <!-- Estrella vacía -->
-                </div>
+
             </div>
         </div>
         </div>
@@ -67,30 +111,41 @@
 
         <!-- publicaciones-->
         <div id="publicaciones" class=" mt-4">
-            <div class="border border-gray-200 p-4 rounded-md mb-4">
-                <h3 class="text-lg font-semibold mb-2">Título de la Publicación</h3>
-                <p class="text-sm text-gray-600 mb-2">Status: Confirmacion</p>
-                <p class="text-sm text-gray-600 mb-2">Fecha: 17 de marzo de 2024</p>
-                <p class="text-sm text-gray-600 mb-2">Asesor: Nombre del Asesor</p>
-                <p class="text-sm text-gray-600 mb-2">Categoria: Nombre de la categoria</p>
-    
+            
 
-            <form action="" method="post">
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-md" name='pagar'>Acción</button>
-                </form>
-        </div>
+                <?php
+                    foreach ($notifications as $notification) {
+                        echo "<div class='border border-gray-200 p-4 rounded-md mb-4'>";
+                        echo "<h3 class='text-lg font-semibold mb-2'>{$notification['titulo']}</h3>";
+                        echo "<p class='text-sm text-gray-600 mb-2'>Status: {$notification['estatus']}  </p>";
+                        echo "<p class='text-sm text-gray-600 mb-2'>fecha: {$notification['fecha']}</p>";
+                        echo "<p class='text-sm text-gray-600 mb-2'>Asesor: {$notification['asesor']}</p>";
+                        echo "<p class='text-sm text-gray-600 mb-2'>Categoria: {$notification['categoria']}</p>";
 
-            <!-- Publicación 2 -->
-            <div class="border border-gray-200 p-4 rounded-md mb-4">
-                <h3 class="text-lg font-semibold mb-2">Título de la Publicación</h3>
-                <p class="text-sm text-gray-600 mb-2">Status: Confirmacion</p>
-                <p class="text-sm text-gray-600 mb-2">Fecha: 16 de marzo de 2024</p>
-                <p class="text-sm text-gray-600 mb-2">Asesor: Nombre del Asesor</p>
-                <p class="text-sm text-gray-600 mb-2">Categoria: Nombre de la categoria</p>
-                <form action="profile" method= 'POST'>
-                    <button id='btn-create' name ='pagar' class="bg-blue-500 text-white px-4 py-2 rounded-md">Acción</button>
-                </form>
-            </div>
+                        if ($notification['id_usuario'] == $_SESSION['usuario']['id_usuario'] && $notification['estatus'] == 'confirmacion') {
+                            echo 'En espera del pago del estudiante';
+                        }else{
+                            if ($notification['estatus'] == 'pagado') {
+                                echo "<form >
+                                    <input type='hidden' id='id_app' value='{$notification['id_sala']}'>
+                                    <input type='hidden' id='token' value='{$notification['access_token']}'>
+                                    <input type='hidden' id='channel' value={$notification['nombre']}>
+                                    <button class='bg-blue-500 text-white px-4 py-2 rounded-md' id='reunion'>Entrar a la reunion</button>
+                                </form>";
+                            }else{
+                                echo "<form action='' method='post'>
+                                    <input id='horas' type='hidden' name='horas' value='{$notification['fecha']}'>
+                                    <input id='id_noti' type='hidden' name='id_noti' value='{$notification['id_noti']}'>
+                                    <input id='id_stripe' type='hidden' name='id_stripe' value={$notification['id_stripe']}>
+                                    <button class='createRoom bg-blue-500 text-white px-4 py-2 rounded-md' >Pagar</button>
+                                </form>";
+                            }
+                        }
+                        
+                        echo '</div>';
+                    }
+                ?>
+                
         </div>
 
         <div id="reseñas" class="hidden mt-4">
@@ -208,7 +263,8 @@
     </script>
 
     <script src='../app/utils/dynamic/aside.js'></script>
-    <script src='../app/utils/dynamic/createProyect.js'></script>
+    <script src='../app/utils/dynamic/createRoom.js'></script>
+    <script src='../app/utils/dynamic/joinRoom.js'></script>
 
 </body>
 

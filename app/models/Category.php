@@ -38,6 +38,11 @@ class Category {
         LIMIT $empezar_desde, $resultados_por_pagina");
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getAllCategoriesS() {
+        $st = $this->conn->query("SELECT *
+        FROM categorias");
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>

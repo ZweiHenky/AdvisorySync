@@ -19,9 +19,9 @@ class User {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function updateUser($id, $username, $email) {
-        $st = $this->conn->prepare("UPDATE users SET username = ?, email = ? WHERE id = ?");
-        return $st->execute([$username, $email, $id]);
+    public function updateUser($email , $id_stripe) {
+        $st = $this->conn->prepare("UPDATE usuarios SET id_stripe = ? WHERE correo = ?");
+        return $st->execute([$id_stripe, $email]);
     }
 
     public function deleteUser($id) {

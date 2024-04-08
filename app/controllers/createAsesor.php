@@ -3,27 +3,28 @@
     session_start();
 
     require_once '../assets/stripe-php/init.php';
+    require_once '../models/User.php';
+    require_once '../models/config/Connection.php';
+
+    $user = new User(Connection::conn());
 
     $stripe = new \Stripe\StripeClient([
         'api_key' => 'sk_test_51P0IeWP9Ot3ecyAmM9aCRnphdEMkJJoLtlHaomOPghHWr8Pt35fH74cCqFN5jYPXYFXNmUphODU0m8tHzVorVm0s00lMeZ1qwy'
     ]);
 
-if (isset($_SESSION['usuario']['id_stripe']) ) {
-    // echo 'asesor';
+    $_SESSION['usuario']['false_stripe'] = 'acct_1P0ruc05JB1M6W66';
     
-    // $account = $stripe->accounts->retrieve(
-    //     'acct_1P1jLJ064MKrgUGM',
-    //     []
-    //   );
+
+    if (isset($_SESSION['usuario']['false_stripe']) ) {
 
     $account = $stripe->accounts->retrieve(
-        'acct_1P1jLJ064MKrgUGM',
+        $_SESSION['usuario']['false_stripe'],
         []
     );
 
     if ($account['charges_enabled'] == false) {
         $url =  $stripe->accountLinks->create([
-            'account' => 'acct_1P1jLJ064MKrgUGM',
+            'account' => $_SESSION['usuario']['false_stripe'],
             'refresh_url' => 'http://localhost/advisorysync/dynamic/refresh',
             'return_url' => 'http://localhost/advisorysync/dynamic/return',
             'type' => 'account_onboarding',
@@ -31,6 +32,13 @@ if (isset($_SESSION['usuario']['id_stripe']) ) {
 
         echo json_encode(['url' => $url->url]);
     }else{
+        try {
+            $res = $user->updateUser($_SESSION['usuario']['correo'], $_SESSION['usuario']['false_stripe']);
+            $_SESSION['createAdviser'] = true;
+        } catch (\Throwable $th) {
+            $_SESSION['createAdviser'] = false;
+        }
+
         echo json_encode(['status' => 'ok']);
     }
 
@@ -46,16 +54,14 @@ if (isset($_SESSION['usuario']['id_stripe']) ) {
         ],
     ]);
 
-    $_SESSION['usuario']['id_stripe'] = $account['id'];
+    $_SESSION['usuario']['false_stripe'] = $account['id'];
 
     $url =  $stripe->accountLinks->create([
-        'account' => $_SESSION['usuario']['id_stripe'],
+        'account' => $_SESSION['usuario']['false_stripe'],
         'refresh_url' => 'http://localhost/advisorysync/dynamic/refresh',
         'return_url' => 'http://localhost/advisorysync/dynamic/return',
         'type' => 'account_onboarding',
     ]);
-
-    // header("location: {$url['url']}");
 
     echo json_encode(['url' => $url->url]);
 }

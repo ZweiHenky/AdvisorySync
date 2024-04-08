@@ -19,6 +19,15 @@ class Favorites{
             $st->execute();
             return $st->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    function addFavorites($data){
+        $st = $this->conn->prepare(
+            "INSERT INTO `favoritos`(`id_fav`, `id_usuario`, `id_publi`) VALUES ('','1','2');");
+            $st->execute();
+            return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    
 }
 
 

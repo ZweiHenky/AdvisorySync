@@ -8,11 +8,54 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../app/utils/dynamic/tailwind.config.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.3/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src='../app/assets/AgoraRTC_N-4.20.2.js'></script>
+    <style>
+        #video-streams{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            height: 90vh;
+            width: 1400px;
+            margin:0 auto;
+        }
 
+        .video-container{
+            max-height: 100%;
+            border: 2px solid black;
+            background-color: #203A49;
+        }
+
+        .video-player{
+            height: 100%;
+            width: 100%;
+        }
+
+        button{
+            border:none;
+            background-color: cadetblue;
+            color:#fff;
+            padding:10px 20px;
+            font-size:16px;
+            margin:2px;
+            cursor: pointer;
+        }
+
+        #stream-controls{
+            display: none;
+            justify-content: center;
+            margin-top:0.5em;
+        }
+
+        @media screen and (max-width:1400px){
+            #video-streams{
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                width: 95%;
+            }
+        }
+    </style>
 </head>
 <body>
 
-
+<!-- 
     <main class='bg-black h-[100dvh]  flex flex-col items-center pt-6 gap-5'>
         <div class='bg-white h-[40%] border w-[90%] rounded'>
             
@@ -58,7 +101,24 @@
             chat.classList.add('hidden')
         })
 
-    </script>
+    </script> -->
 
+    <button id="join-btn">Join Stream</button>
+
+    <div id="stream-wrapper">
+        <div id="video-streams">
+            
+        </div>
+
+        <div id="stream-controls">
+            <button id="leave-btn">Leave Stream</button>
+            <button id="mic-btn">Mic On</button>
+            <button id="camera-btn">Camera on</button>
+            <button id="screen-btn">Share Screen</button>
+        </div>
+    </div>
+
+    
+    <script src='../app/utils/dynamic/room.js'></script>
 </body>
 </html>

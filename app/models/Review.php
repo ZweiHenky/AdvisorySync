@@ -22,6 +22,13 @@ class Review {
         LIMIT $empezar_desde, $resultados_por_pagina");
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getRating($user) {
+        $st = $this->conn->prepare("SELECT ROUND(AVG(valoracion), 1) as rating FROM resenas WHERE id_usuario = ?");
+        $st->execute([$user]);
+        return $st->fetch(PDO::FETCH_ASSOC);
+    }
+    
 }
 
 ?>
