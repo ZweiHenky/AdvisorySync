@@ -23,7 +23,7 @@ class DynamicController {
 
         // 3.- Aceptar publicacion 
 
-        var_dump($_SESSION['usuario']);
+        // var_dump($_SESSION['usuario']);
         // echo $_SESSION['usuario']['id_stripe'];
 
 
@@ -35,35 +35,34 @@ class DynamicController {
     }
 
     public function profile(){
-
         
-        require_once 'app/assets/stripe-php/init.php';
+        // require_once 'app/assets/stripe-php/init.php';
 
-        $stripe = new \Stripe\StripeClient([
-            'api_key' => 'sk_test_51P0IeWP9Ot3ecyAmM9aCRnphdEMkJJoLtlHaomOPghHWr8Pt35fH74cCqFN5jYPXYFXNmUphODU0m8tHzVorVm0s00lMeZ1qwy'
-        ]);
+        // $stripe = new \Stripe\StripeClient([
+        //     'api_key' => 'sk_test_51P0IeWP9Ot3ecyAmM9aCRnphdEMkJJoLtlHaomOPghHWr8Pt35fH74cCqFN5jYPXYFXNmUphODU0m8tHzVorVm0s00lMeZ1qwy'
+        // ]);
 
-        if (isset($_POST['pagar'])) {
-            $url = $stripe->checkout->sessions->create([
-                'mode' => 'payment',
-                'line_items' => [
-                  [
-                    'price' => 'price_1P0v4dP9Ot3ecyAml9PugWsP',
-                    'quantity' => 1,
-                  ],
-                ],
-                'payment_intent_data' => [
-                  'application_fee_amount' => 1000,
-                  'transfer_data' => ['destination' => 'acct_1P0ruc05JB1M6W66'],
-                ],
-                'success_url' => 'http://localhost/advisorysync/dynamic/success',
-                'cancel_url' => 'http://localhost/advisorysync/dynamic/error',
-              ]);
+        // if (isset($_POST['pagar'])) {
+        //     $url = $stripe->checkout->sessions->create([
+        //         'mode' => 'payment',
+        //         'line_items' => [
+        //           [
+        //             'price' => 'price_1P0v4dP9Ot3ecyAml9PugWsP',
+        //             'quantity' => 1,
+        //           ],
+        //         ],
+        //         'payment_intent_data' => [
+        //           'application_fee_amount' => 1000,
+        //           'transfer_data' => ['destination' => 'acct_1P0ruc05JB1M6W66'],
+        //         ],
+        //         'success_url' => 'http://localhost/advisorysync/dynamic/success',
+        //         'cancel_url' => 'http://localhost/advisorysync/dynamic/error',
+        //       ]);
 
             
 
-            header("location: {$url['url']}");
-        }
+        //     header("location: {$url['url']}");
+        // }
 
 
         // Lógica para la página de perfil del usuario

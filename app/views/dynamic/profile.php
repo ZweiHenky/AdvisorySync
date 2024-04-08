@@ -87,7 +87,9 @@
                 <p class="text-sm text-gray-600 mb-2">Fecha: 16 de marzo de 2024</p>
                 <p class="text-sm text-gray-600 mb-2">Asesor: Nombre del Asesor</p>
                 <p class="text-sm text-gray-600 mb-2">Categoria: Nombre de la categoria</p>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-md">Acción</button>
+                <form action="profile" method= 'POST'>
+                    <button id='btn-create' name ='pagar' class="bg-blue-500 text-white px-4 py-2 rounded-md">Acción</button>
+                </form>
             </div>
         </div>
 
@@ -206,6 +208,7 @@
     </script>
 
     <script src='../app/utils/dynamic/aside.js'></script>
+    <script src='../app/utils/dynamic/createProyect.js'></script>
 
 </body>
 

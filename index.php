@@ -2,10 +2,10 @@
 session_start();
 
 
-// require_once './app/controllers/StaticController.php';
-// require_once './app/controllers/DynamicController.php';
-// require_once './app/controllers/AdminController.php';
-// require_once './app/controllers/AuthController.php';
+require_once './app/controllers/StaticController.php';
+require_once './app/controllers/DynamicController.php';
+require_once './app/controllers/AdminController.php';
+require_once './app/controllers/AuthController.php';
 
 // Obtener la URL
 $url = isset($_GET['url']) ? $_GET['url'] : 'home';
